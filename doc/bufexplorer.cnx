@@ -1,0 +1,522 @@
+*bufexplorer.txt*              Buffer Explorer       最近更新: 2012年10月
+
+Buffer Explorer                                *buffer-explorer* *bufexplorer*
+                                Version 7.3.0
+
+让你容易的浏览访问 Vim |:buffers| 的插件
+
+|bufexplorer-installation|   安装
+|bufexplorer-usage|          使用
+|bufexplorer-windowlayout|   窗口布局
+|bufexplorer-customization|  定制
+|bufexplorer-changelog|      更新历史
+|bufexplorer-todo|           待办事项
+|bufexplorer-credits|        致谢
+
+需要 Vim 7.0 版本以上.
+仅在 'compatible' 未设置时可用。
+
+{此插件不适用于Vi版本}
+
+==============================================================================
+安装                                         *bufexplorer-installation*
+
+安装步骤:
+  - 下载 bufexplorer.zip
+  - 将压缩包解压到你的 runtime 路径下(译注：Windows:$VIM/vimfiles, Linux:.vim/)
+    此压缩包包含了 plugin/bufexplorer.vim 和 doc/bufexplorer.txt
+  - 启动Vim 或 切换到 正在运行的 Vim
+  - 执行以下命令
+>
+      :helptag <your runtime directory>/doc
+<
+译注：Windows: >
+    :helptag $VIM/vimfiles/doc
+<
+Linux: >
+    :helptag .vim/doc
+<
+    这个命令会为doc目录下的任何文件生成帮助标签。
+
+==============================================================================
+使用                                                      *bufexplorer-usage*
+
+要在当前窗口中打开，使用： >
+ \be   或   :BufExplorer   或    你映射的定义键
+在新的水平分割的窗口中打开，使用: >
+ \bs   或   :BufExplorerHorizontalSplit   或    你映射的定义键
+在新的垂直分割的窗口中打开，使用： >
+ \bv   或   :BufExplorerVerticalSplit   或    你映射的定义键
+
+如果你想用其他键替换 '\'，只要简单地设置 leader 就可以了（查看 |mapleader| ）
+
+注意: 如果启动 bufexplorer 时当前的 buffer 有改动, 当前的 window 总是会被分割，
+bufexplorer 会在新的分割出来的 window 中显示
+
+
+启动 bufexplorer 后可用下列命令:
+
+ <F1>          切换帮助信息。
+ <enter>       在当前 window 中打开光标所处的行的 buffer。
+ <leftmouse>   在当前 window 中打开鼠标所指的行的 buffer。
+ <shift-enter> 在别的 tab 中打开当前当标所处的行的 buffer。
+ B             Works in association with the|ShowTabBuffer|option.  If
+               |ShowTabBuffer|is set to 1, this toggles if BufExplorer is to
+               only store the most recent tab for this buffer or not.
+ D             |:delete| 从列表里关闭当前光标下的 buffer, buffer 的 buflisted
+               选项被清空，可以通过 'show unlisted' 命令来重新显示这个 buffer。
+ d             |:wipeout| 从列表里删除当前光标下的 buffer。当一个 buffer 被清除，
+               即使 unlisted buffer 被显示，这个 buffer 也不会出现。
+ f             切换 在选中 buffer 时，在当前窗口中打开 buffer，还是在活动窗口
+               (原 buffer 打开的窗口)中打开 buffer。
+ o             在当前窗口中打开光标下的 buffer。
+ p             切换 文件路径 是否按 文件名/路径 来显示。
+ q             退出 bufexplore。
+ r             反转 buffer 列表的顺序。
+ R             切换 相对路径/绝对路径。
+ s             选择buffer列表的排序方式，可以是 buffer 的序号(buffer number)，
+               文件名，扩展名，最近最多使用(MRU)，或者文件全路径。
+ S             Cycle thru how the buffers are listed, in reverse order.
+               Either by buffer number, file name, file extension, most
+               recently used (MRU), or full path.
+ T             切换 是否只显示本 tab 的 buffer。
+ t             在新的 tab 页打开光标下的 buffer。
+ t             在另外的tab中打开光标下的 buffer。
+ u             切换 是否显示 "unlisted" buffer。
+
+
+一旦被调用，bufexploer 会排序显示一个当前被打开的所有的 buffer 的列
+表(按MRU排序)，你可以移动光标到包含你想要操作的 buffer 的名称的行上，
+选中 buffer 后，你可以打开，关闭(delete)这个 buffer，或重排列表，反向排
+序列表，退出浏览 等等 ...
+
+===============================================================================
+窗口布局                                       *bufexplorer-windowlayout*
+
+-------------------------------------------------------------------------------
+" Press <F1> for Help
+" Sorted by mru | Locate buffer | Absolute Split path
+"=
+ 01 %a    bufexplorer.txt      C:\Vim\vimfiles\doc       line 87
+ 02 #     bufexplorer.vim      c:\Vim\vimfiles\plugin    line 1
+-------------------------------------------------------------------------------
+  | |     |                    |                         |
+  | |     |                    |                         +--  当前行#.
+  | |     |                    +-- 相对/绝对路径
+  | |     +-- Buffer 名称。
+  | +-- Buffer 属性。更多信息请查看 |:buffers|
+  +-- Buffer 序号。更多信息请查看 |:buffers|
+
+===============================================================================
+定制                                               *bufexplorer-customization*
+
+If you do not like the default key mappings of \be, \bs, and \bv, you can
+override bufexplorer's default mappings by setting up something like the
+following in your vimrc file:
+
+  noremap <silent> <F11> :BufExplorer<CR>
+  noremap <silent> <m-F11> :BufExplorerHorizontalSplit<CR>
+  noremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
+
+                                                     *g:bufExplorerDefaultHelp*
+要控制缺省的帮助信息是否被显示，使用: >
+  let g:bufExplorerDefaultHelp=0       " 不显示
+  let g:bufExplorerDefaultHelp=1       " 显示
+默认是显示缺省的帮助信息。
+
+                                                    *g:bufExplorerDetailedHelp*
+要控制详细帮助信息是否被显示，使用: >
+  let g:bufExplorerDetailedHelp=0      " 不显示
+  let g:bufExplorerDetailedHelp=1      " 显示
+默认是不显示详细帮助信息。
+
+                                                      *g:bufExplorerFindActive*
+要控制是否在活动窗口中打开选中的 buffer，使用： >
+  let g:bufExplorerFindActive=0        " 在当前窗口中打开
+  let g:bufExplorerFindActive=1        " 在活动窗口中打开
+默认是在活动窗口中打开
+译注: 活动窗口即 buffer 原来打开时所在的窗口
+
+                                                     *g:bufExplorerReverseSort*
+要控制当排序列表时是否反向来排序，使用： >
+  let g:bufExplorerReverseSort=0       " 不反向排序
+  let g:bufExplorerReverseSort=1       " 反向排序
+默认不使用反向顺序。
+
+                                                 *g:bufExplorerShowDirectories*
+通常使用像 ":e ." 这样的命令会显示目录到列表中。
+要控制是否将目录显示到缓冲区列表，使用： >
+  let g:bufExplorerShowDirectories=1   " Show directories.
+  let g:bufExplorerShowDirectories=0   " Don't show directories.
+默认显示目录列表。
+
+                                                *g:bufExplorerShowRelativePath*
+要控制是显示相对还是绝对路径，使用： >
+  let g:bufExplorerShowRelativePath=0  " 显示绝对路径
+  let g:bufExplorerShowRelativePath=1  " 显示相对路径
+默认显示绝对路径。
+
+                                                    *g:bufExplorerShowUnlisted*
+要控制是否显示有 "unlisted" 标志的 buffer，使用： >
+  let g:bufExplorerShowUnlisted=0      " 不显示
+  let g:bufExplorerShowUnlisted=1      " 显示
+默认不显示 "unlisted" 的 buffer。
+
+                                                          *g:bufExplorerSortBy*
+要控制 buffer 列表的排序方式，使用： >
+  let g:bufExplorerSortBy='extension'  " 按扩展名排序
+  let g:bufExplorerSortBy='fullpath'   " 按文件路径(包括文件名)
+  let g:bufExplorerSortBy='mru'        " 按最近常用算法
+  let g:bufExplorerSortBy='name'       " 按文件名
+  let g:bufExplorerSortBy='number'     " 按 buffer 序号
+默认按 MRU 排序。
+
+                                                      *g:bufExplorerSplitBelow*
+要控制新分割出来的窗口是在当前窗口的上面还是下面，使用： >
+  let g:bufExplorerSplitBelow=1        " 分割出来的新窗口在当前窗口之下。
+  let g:bufExplorerSplitBelow=0        " 分割出来的新窗口在当前窗口之上。
+默认是按照全局的 &splitbelow 变量设置来分割。
+
+                                                *g:bufExplorerSplitOutPathName*
+要控制显示时，是否分开显示文件名称和路径，还是一起显示，使用： >
+  let g:bufExplorerSplitOutPathName=1  " 分开显示 文件名 和 路径
+  let g:bufExplorerSplitOutPathName=0  " 一起显示
+默认分开显示文件名和路径。
+
+                                                      *g:bufExplorerSplitRight*
+要控制垂直分割的新窗口是在当前窗口的左边还是右边,使用: >
+  let g:bufExplorerSplitRight=0        " 左边
+  let g:bufExplorerSplitRight=1        " 右边
+默认是按照全局的 &splitright 变量设置来分割。
+
+                                                   *g:bufExplorerShowTabBuffer*
+要控制是否只显示本 tab 内打开的 buffer，使用： >
+  let g:bufExplorerShowTabBuffer=0        " 否。(显示所有 tab 内打开的 buffer)
+  let g:bufExplorerShowTabBuffer=1        " 是。
+默认是显示所有打开的 buffer，而不是本 tab。
+
+===============================================================================
+更新历史                                                *bufexplorer-changelog*
+
+7.3.0  - It has been quite a while since I published a new version and this
+         is the first version since Vim 7.3 was released.
+         * Thanks to Tim Johnson for testing out this new version.
+         * I have put some time into reworking and cleaning up the code as
+         * well as various bug fixes.
+         * I have hopefully allowed for better mapping of the main public
+           methods as is explained in the|bufexplorer-customization|section
+           of the documentation.
+         * Add new 'B', 'o', and 'S' key mappings.
+         * Overall, I am hopeful that I not forgotten or lost a feature.
+7.2.8  - Enhancements:
+         * Thanks to Charles Campbell for integrating bufexplorer with GDBMGR.
+           http://mysite.verizon.net/astronaut/vim/index.html#GDBMGR
+7.2.7  - Fix:
+         * My 1st attempt to fix the "cache" issue where buffers information
+           has changed but the cache/display does not reflect those changes.
+           More work still needs to be done.
+7.2.6  - Fix:
+         * Thanks to Michael Henry for pointing out that I totally forgot to
+           update the inline help to reflect the previous change to the 'd'
+           and 'D' keys. Opps!
+7.2.5  - Fix:
+         * Philip Morant suggested switching the command (bwipe) associated
+           with the 'd' key with the command (bdelete) associated with the 'D'
+           key. This made sense since the 'd' key is more likely to be used
+           compared to the 'D' key.
+7.2.4  - Fix:
+         * I did not implement the patch provided by Godefroid Chapelle
+           correctly. I missed one line which happened to be the most
+           important one :)
+7.2.3  - Enhancements:
+         * Thanks to David Fishburn for helping me out with a much needed
+           code overhaul as well as some awesome performance enhancements.
+           He also reworked the handling of tabs.
+         * Thanks to Vladimir Dobriakov for making the suggestions on
+           enhancing the documentation to include a better explaination of
+           what is contained in the main bufexplorer window.
+         * Thanks to Yuriy Ershov for added code that when the bufexplorer
+           window is opened, the cursor is now positioned at the line with the
+           active buffer (useful in non-MRU sort modes).
+         * Yuriy also added the abiltiy to cycle through the sort fields in
+           reverse order.
+         Fixes:
+         * Thanks to Michael Henry for supplying a patch that allows
+           bufexplorer to be opened even when there is one buffer or less.
+         * Thanks to Godefroid Chapelle for supplying a patch that fixed
+           MRU sort order after loading a session.
+7.2.2  - Fixes:
+         * Thanks to David L. Dight for spotting and fixing an issue when
+           using ctrl^. bufexplorer would incorrectly handle the previous
+           buffer so that when ctrl^ was pressed the incorrect file was opened.
+7.2.1  - Fixes:
+         * Thanks to Dimitar for spotting and fixing a feature that was
+           inadvertently left out of the previous version. The feature was
+           when bufexplorer was used together with WinManager, you could use
+           the tab key to open a buffer in a split window.
+7.2.0  - Enhancements:
+         * For all those missing the \bs and \bv commands, these have now
+           returned. Thanks to Phil O'Connell for asking for the return of
+           these missing features and helping test out this version.
+         Fixes:
+         * Fixed problem with the bufExplorerFindActive code not working
+           correctly.
+         * Fixed an incompatibility between bufexplorer and netrw that caused
+           buffers to be incorrectly removed from the MRU list.
+7.1.7  - Fixes:
+         * TaCahiroy fixed several issues related to opening a buffer in a
+           tab.
+7.1.6  - Fixes:
+         * Removed ff=unix from modeline in bufexplorer.txt. Found by Bill
+           McCarthy.
+7.1.5  - Fixes:
+         * Could not open unnamed buffers. Fixed by TaCahiroy.
+7.1.4  - Fixes:
+         * Sometimes when a file's path has 'white space' in it, extra buffers
+           would be created containing each piece of the path. i.e:
+           opening c:\document and settings\test.txt would create a buffer
+           named "and" and a buffer named "Documents". This was reported and
+           fixed by TaCa Yoss.
+7.1.3  - Fixes:
+         * Added code to allow only one instance of the plugin to run at a
+           time. Thanks Dennis Hostetler.
+7.1.2  - Fixes:
+         * Fixed a jumplist issue spotted by JiangJun. I overlooked the
+           'jumplist' and with a couple calls to 'keepjumps', everything is
+           fine again.
+         * Went back to just having a plugin file, no autoload file. By having
+           the autoload, WinManager was no longer working and without really
+           digging into the cause, it was easier to go back to using just a
+           plugin file.
+7.1.1  - Fixes:
+         * A problem spotted by Thomas Arendsen Hein.
+           When running Vim (7.1.94), error E493 was being thrown.
+         Enhancements:
+         * Added 'D' for 'delete' buffer as the 'd' command was a 'wipe'
+           buffer.
+7.1.0  - Another 'major' update, some by Dave Larson, some by me.
+         * Making use of 'autoload' now to make the plugin load quicker.
+         * Removed '\bs' and '\bv'. These are now controlled by the user. The
+           user can issue a ':sp' or ':vs' to create a horizontal or vertical
+           split window and then issue a '\be'
+         * Added handling of tabs.
+7.0.17 - Fixed issue with 'drop' command.
+         Various enhancements and improvements.
+7.0.16 - Fixed issue reported by Liu Jiaping on non Windows systems, which was
+         ...
+         Open file1, open file2, modify file1, open bufexplorer, you get the
+         following error:
+
+         --------8<--------
+         Error detected while processing function
+         <SNR>14_StartBufExplorer..<SNR>14_SplitOpen:
+         line    4:
+         E37: No write since last change (add ! to override)
+
+         But the worse thing is, when I want to save the current buffer and
+         type ':w', I get another error message:
+         E382: Cannot write, 'buftype' option is set
+         --------8<--------
+
+7.0.15 - Thanks to Mark Smithfield for suggesting bufexplorer needed to handle
+         the ':args' command.
+7.0.14 - Thanks to Randall Hansen for removing the requirement of terminal
+         versions to be recompiled with 'gui' support so the 'drop' command
+         would work. The 'drop' command is really not needed in terminal
+         versions.
+7.0.13 - Fixed integration with WinManager.
+         Thanks to Dave Eggum for another update.
+           - Fix: The detailed help didn't display the mapping for toggling
+                  the split type, even though the split type is displayed.
+           - Fixed incorrect description in the detailed help for toggling
+             relative or full paths.
+           - Deprecated s:ExtractBufferNbr(). Vim's str2nr() does the same
+             thing.
+           - Created a s:Set() function that sets a variable only if it hasn't
+             already been defined. It's useful for initializing all those
+             default settings.
+           - Removed checks for repetitive command definitions. They were
+             unnecessary.
+           - Made the help highlighting a little more fancy.
+           - Minor reverse compatibility issue: Changed ambiguous setting
+             names to be more descriptive of what they do (also makes the code
+             easier to follow):
+               Changed bufExplorerSortDirection to bufExplorerReverseSort
+               Changed bufExplorerSplitType to bufExplorerSplitVertical
+               Changed bufExplorerOpenMode to bufExplorerUseCurrentWindow
+           - When the BufExplorer window closes, all the file-local marks are
+             now deleted. This may have the benefit of cleaning up some of the
+             jumplist.
+           - Changed the name of the parameter for StartBufExplorer from
+             "split" to "open". The parameter is a string which specifies how
+             the buffer will be open, not if it is split or not.
+           - Deprecated DoAnyMoreBuffersExist() - it is a one line function
+             only used in one spot.
+           - Created four functions (SplitOpen(), RebuildBufferList(),
+             UpdateHelpStatus() and ReSortListing()) all with one purpose - to
+             reduce repeated code.
+           - Changed the name of AddHeader() to CreateHelp() to be more
+             descriptive of what it does. It now returns an array instead of
+             updating the window directly. This has the benefit of making the
+             code more efficient since the text the function returns is used a
+             little differently in the two places the function is called.
+         - Other minor simplifications.
+7.0.12 - MAJOR Update.
+         This version will ONLY run with Vim version 7.0 or greater.
+         Dave Eggum has made some 'significant' updates to this latest
+         version:
+           - Added BufExplorerGetAltBuf() global function to be used in the
+             user抯 rulerformat.
+           - Added g:bufExplorerSplitRight option.
+           - Added g:bufExplorerShowRelativePath option with mapping.
+           - Added current line highlighting.
+           - The split type can now be changed whether bufexplorer is opened
+             in split mode or not.
+           - Various major and minor bug fixes and speed improvements.
+           - Sort by extension.
+         Other improvements/changes:
+           - Changed the help key from '?' to <F1> to be more 'standard'.
+           - Fixed splitting of vertical bufexplorer window.
+         Hopefully I have not forgot something :)
+7.0.11 - Fixed a couple of highlighting bugs, reported by David Eggum. He also
+         changed passive voice to active on a couple of warning messages.
+7.0.10 - Fixed bug report by Xiangjiang Ma. If the 'ssl' option is set,
+         the slash character used when displaying the path was incorrect.
+7.0.9  - Martin Grenfell found and eliminated an annoying bug in the
+         bufexplorer/winmanager integration. The bug was were an
+         annoying message would be displayed when a window was split or
+         a new file was opened in a new window. Thanks Martin!
+7.0.8  - Thanks to Mike Li for catching a bug in the WinManager integration.
+         The bug was related to the incorrect displaying of the buffer
+         explorer's window title.
+7.0.7  - Thanks to Jeremy Cowgar for adding a new enhancement. This
+         enhancement allows the user to press 'S', that is capital S, which
+         will open the buffer under the cursor in a newly created split
+         window.
+7.0.6  - Thanks to Larry Zhang for finding a bug in the "split" buffer code.
+         If you force set g:bufExplorerSplitType='v' in your vimrc, and if you
+         tried to do a \bs to split the bufexplorer window, it would always
+         split horizontal, not vertical. He also found that I had a typeo in
+         that the variable g:bufExplorerSplitVertSize was all lower case in
+         the documentation which was incorrect.
+7.0.5  - Thanks to Mun Johl for pointing out a bug that if a buffer was
+         modified, the '+' was not showing up correctly.
+7.0.4  - Fixed a problem discovered first by Xiangjiang Ma. Well since I've
+         been using vim 7.0 and not 6.3, I started using a function (getftype)
+         that is not in 6.3. So for backward compatibility, I conditionaly use
+         this function now.  Thus, the g:bufExplorerShowDirectories feature is
+         only available when using vim 7.0 and above.
+7.0.3  - Thanks to Erwin Waterlander for finding a problem when the last
+         buffer was deleted. This issue got me to rewrite the buffer display
+         logic (which I've wanted to do for sometime now).
+         Also great thanks to Dave Eggum for coming up with idea for
+         g:bufExplorerShowDirectories. Read the above information about this
+         feature.
+7.0.2  - Thanks to Thomas Arendsen Hein for finding a problem when a user
+         has the default help turned off and then brought up the explorer. An
+         E493 would be displayed.
+7.0.1  - Thanks to Erwin Waterlander for finding a couple problems.
+         The first problem allowed a modified buffer to be deleted.  Opps! The
+         second problem occurred when several files were opened, BufExplorer
+         was started, the current buffer was deleted using the 'd' option, and
+         then BufExplorer was exited. The deleted buffer was still visible
+         while it is not in the buffers list. Opps again!
+7.0.0  - Thanks to Shankar R. for suggesting to add the ability to set
+         the fixed width (g:bufExplorerSplitVertSize) of a new window
+         when opening bufexplorer vertically and fixed height
+         (g:bufExplorerSplitHorzSize) of a new window when opening
+         bufexplorer horizontally. By default, the windows are normally
+         split to use half the existing width or height.
+6.3.0  - Added keepjumps so that the jumps list would not get cluttered with
+         bufexplorer related stuff.
+6.2.3  - Thanks to Jay Logan for finding a bug in the vertical split position
+         of the code. When selecting that the window was to be split
+         vertically by doing a '\bv', from then on, all splits, i.e. '\bs',
+         were split vertically, even though g:bufExplorerSplitType was not set
+         to 'v'.
+6.2.2  - Thanks to Patrik Modesto for adding a small improvement. For some
+         reason his bufexplorer window was always showing up folded. He added
+         'setlocal nofoldenable' and it was fixed.
+6.2.1  - Thanks goes out to Takashi Matsuo for added the 'fullPath' sorting
+         logic and option.
+6.2.0  - Thanks goes out to Simon Johann-Ganter for spotting and fixing a
+         problem in that the last search pattern is overridden by the search
+         pattern for blank lines.
+6.1.6  - Thanks to Artem Chuprina for finding a pesky bug that has been around
+         for sometime now. The <esc> key mapping was causing the buffer
+         explored to close prematurely when vim was run in an xterm. The <esc>
+         key mapping is now removed.
+6.1.5  - Thanks to Khorev Sergey. Added option to show default help or not.
+6.1.4  - Thanks goes out to Valery Kondakoff for suggesting the addition of
+         setlocal nonumber and foldcolumn=0. This allows for line numbering
+         and folding to be turned off temporarily while in the explorer.
+6.1.3  - Added folding. Did some code cleanup. Added the ability to force the
+         newly split window to be temporarily vertical, which was suggested by
+         Thomas Glanzmann.
+6.1.2  - Now pressing the <esc> key will quit, just like 'q'.
+         Added folds to hide winmanager configuration.
+         If anyone had the 'C' option in their cpoptions they would receive
+         a E10 error on startup of BufExplorer. cpo is now saved, updated and
+         restored. Thanks to Charles E Campbell, Jr.
+         Attempted to make sure there can only be one BufExplorer window open
+         at a time.
+6.1.1  - Thanks to Brian D. Goodwin for adding toupper to FileNameCmp. This
+         way buffers sorted by name will be in the correct order regardless of
+         case.
+6.0.16 - Thanks to Andre Pang for the original patch/idea to get bufexplorer
+         to work in insertmode/modeless mode (evim). Added Initialize
+         and Cleanup autocommands to handle commands that need to be
+         performed when starting or leaving bufexplorer.
+6.0.15 - Srinath Avadhanulax added a patch for winmanager.vim.
+6.0.14 - Fix a few more bug that I thought I already had fixed. Thanks
+         to Eric Bloodworth for adding 'Open Mode/Edit in Place'. Added
+         vertical splitting.
+6.0.13 - Thanks to Charles E Campbell, Jr. for pointing out some embarrassing
+         typos that I had in the documentation. I guess I need to run
+         the spell checker more :o)
+6.0.12 - Thanks to Madoka Machitani, for the tip on adding the augroup command
+         around the MRUList autocommands.
+6.0.11 - Fixed bug report by Xiangjiang Ma. '"=' was being added to the
+         search history which messed up hlsearch.
+6.0.10 - Added the necessary hooks so that the Srinath Avadhanula's
+         winmanager.vim script could more easily integrate with this script.
+         Tried to improve performance.
+6.0.9  - Added MRU (Most Recently Used) sort ordering.
+6.0.8  - Was not resetting the showcmd command correctly.
+         Added nifty help file.
+6.0.7  - Thanks to Brett Carlane for some great enhancements. Some are added,
+         some are not, yet. Added highlighting of current and alternate
+         filenames. Added splitting of path/filename toggle. Reworked
+         ShowBuffers().
+         Changed my email address.
+6.0.6  - Copyright notice added. Needed this so that it could be distributed
+         with Debian Linux. Fixed problem with the SortListing() function
+         failing when there was only one buffer to display.
+6.0.5  - Fixed problems reported by David Pascoe, in that you where unable to
+         hit 'd' on a buffer that belonged to a files that no longer existed
+         and that the 'yank' buffer was being overridden by the help text when
+         the bufexplorer was opened.
+6.0.4  - Thanks to Charles Campbell, Jr. for making this plugin more plugin
+         *compliant*, adding default keymappings of <Leader>be and <Leader>bs
+         as well as fixing the 'w:sortDirLabel not being defined' bug.
+6.0.3  - Added sorting capabilities. Sort taken from explorer.vim.
+6.0.2  - Can't remember. (2001-07-25)
+6.0.1  - Initial release.
+
+===============================================================================
+TODO                                                         *bufexplorer-todo*
+
+- Nothing as of now, buf if you have any suggestions, drop me an email.
+
+===============================================================================
+CREDITS                                                   *bufexplorer-credits*
+
+Author: Jeff Lanzarotta <delux256-vim at yahoo dot com>
+
+Credit must go out to Bram Moolenaar and all the Vim developers for
+making the world's best editor (IMHO). I also want to thank everyone who
+helped and gave me suggestions. I wouldn't want to leave anyone out so I
+won't list names.
+
+===============================================================================
+vim:tw=78:noet:wrap:ts=8:ft=help:norl:
