@@ -11,7 +11,7 @@
 
 ### 独立安装 ###
 
-将doc文件夹放到~/.vim(linux)/$VIM\vimfiles(window)目录中，然后在VIM中进行`:helptags ~/.vim/doc`(linux)或者`:helptags $VIM\vimfiles\doc`，完成之后会在doc目录下生成tag以及tag-cn文件。
+将doc文件夹放到`~/.vim`(linux) / `$VIM\vimfiles`(window)目录中，然后在VIM中进行`:helptags ~/.vim/doc`(linux)或者`:helptags $VIM\vimfiles\doc`，完成之后会在doc目录下生成tag以及tag-cn文件。
 
 ### Vundle安装 ###
 
@@ -25,9 +25,9 @@
 
 # 申明 #
 
-文档内容来源于 http://vimcdoc.sourceforge.net/，我只是简单搬过来并加入了些已经被翻译过来的插件中文文档
+文档内容来源于 [http://vimcdoc.sourceforge.net/]()，我只是简单搬过来并加入了些已经被翻译过来的插件中文文档
 
-以加入的插件文档，欢迎大家完善
+已加入的插件文档，欢迎大家完善
 
   - NERD_tree 像妈妈一样体贴的树形插件！
   - bufexplorer Buffer Explorer
