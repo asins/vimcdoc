@@ -1,33 +1,33 @@
-*os_beos.txt*	For Vim version 7.4.  最近修改: 2006年2月
+*os_beos.txt*   For Vim version 7.4.  最近修改: 2006年2月
 
 
-		  VIM 参考手册    by Bram Moolenaar
-				译者: Willis
-				http://vimcdoc.sf.net
+                  VIM 参考手册    by Bram Moolenaar
+                                译者: Willis
+                                http://vimcdoc.sf.net
 
 
-							*BeOS* *BeBox*
+                                                        *BeOS* *BeBox*
 这是一个适用于 BeOS 预览版本 2 (也被称为 PR2) 或以后版本的 Vim 5.1 移植版本。
 
 本文包含了 Vim 的 BeBox/BeOS 版本的特殊之处。除了本文提到的之外，和一般的 Unix
 |os_unix.txt| 版本的 Vim 行为大致相当。
 
- 1. 通用			|beos-general|
- 2. 编译 Vim			|beos-compiling|
- 3. 终端的超时问题		|beos-timeout|
- 4. Unicode 还是 Latin1		|beos-unicode|
- 5. BeOS GUI			|beos-gui|
- 6. $VIM 目录			|beos-vimdir|
- 7. 拖和放			|beos-dragndrop|
- 8. 单次启动还是多次启动	|beos-launch|
- 9. 字体			|beos-fonts|
-10. meta 键修饰符		|beos-meta|
-11. 鼠标键映射			|beos-mouse|
-12. 色彩名称			|beos-colors|
-13. 带 Perl 的编译		|beos-perl|
+ 1. 通用                        |beos-general|
+ 2. 编译 Vim                    |beos-compiling|
+ 3. 终端的超时问题              |beos-timeout|
+ 4. Unicode 还是 Latin1         |beos-unicode|
+ 5. BeOS GUI                    |beos-gui|
+ 6. $VIM 目录                   |beos-vimdir|
+ 7. 拖和放                      |beos-dragndrop|
+ 8. 单次启动还是多次启动        |beos-launch|
+ 9. 字体                        |beos-fonts|
+10. meta 键修饰符               |beos-meta|
+11. 鼠标键映射                  |beos-mouse|
+12. 色彩名称                    |beos-colors|
+13. 带 Perl 的编译              |beos-perl|
 
 
-1. 通用							*beos-general*
+1. 通用                                                 *beos-general*
 
 一般，语法高亮用不同的前景色高亮不同的项目。这特别适用于深色背景和浅色前景的终
 端窗口。有些中等灰色的背景 (比如 (r,g,b)=(168,168,168)) 也不错。如果你用缺省的
@@ -41,7 +41,7 @@
   :endif
 
 
-2. 编译 Vim						*beos-compiling*
+2. 编译 Vim                                             *beos-compiling*
 
 从 Advanced Access Preview Release (AAPR) 预览版本开始，Vim 可以用标准的
 configure 脚本进行配置。要设置正确的编译器及其标志位，在外壳上应用下面的命令
@@ -86,7 +86,7 @@ http://www.metrowerks.com 了解如果购买 BeOS 的 CodeWarrior 编译器。�
 即使你有合适的文件，以上步骤并不能包含 Perl 或者 Python 接口。|beos-perl|
 
 
-3. 终端的超时问题					*beos-timeout*
+3. 终端的超时问题                                       *beos-timeout*
 
 因为有的 POSIX/UNIX 功能还未实现[1]，终端里的带超时的读操作还没有直接的操作系
 统支持。这意味着除非你设置了 :set notimeout，你不能用 :mapping 等映射多于一个
@@ -103,8 +103,8 @@ http://www.metrowerks.com 了解如果购买 BeOS 的 CodeWarrior 编译器。�
 [1]: 没有文件描述符上的 select() 例程；另外 终端输入/输出接口 VMIN 和 VTIME 的
 设置也不正确。这一问题从 DR7 开始就存在，至少在 PR2 里还没有解决。
 
-							*beos-unicode*
-4. Unicode 还是 Latin1					*beos-utf8*
+                                                        *beos-unicode*
+4. Unicode 还是 Latin1                                  *beos-utf8*
 
 BeOS 用 Unicode 和 UTF-8 来编码文本字符串 (16-位字符编码成 8-位字符)。Vim 假定
 你用 ISO-Latin1 或者其他 8-位 字符代码。这对非 ASCII 的字符会产生意外的结果。
@@ -116,13 +116,13 @@ BeOS 用 Unicode 和 UTF-8 来编码文本字符串 (16-位字符编码成 8-位
 filename) 或者相反 (xtou -t iso1 filename)。
 
 
-5. BeOS GUI						*beos-gui*
+5. BeOS GUI                                             *beos-gui*
 
 不再包含 BeOS GUI 的代码。有相当长的时间没有人维护，很有可能已经不能用。如果你
 需要，从 Vim 6.x 版本中合并进相应的代码。
 
 
-6。$VIM 目录						*beos-vimdir*
+6。$VIM 目录                                            *beos-vimdir*
 
 $VIM 代表 Vim 支持文件所在的位置。它的缺省值在编译时被确定，可以如下得到 >
 
@@ -137,7 +137,7 @@ $VIM 代表 Vim 支持文件所在的位置。它的缺省值在编译时被确�
   :endif
 
 
-7. 拖和放						*beos-dragndrop*
+7. 拖和放                                               *beos-dragndrop*
 
 你可以把文件和目录拖放在 Vim 图标上 (从而启动一个新的 Vim 会话，除非你用文件类
 型应用把 Vim 设为 "单次启动") 或者放在 Vim 窗口上 (从而开始编辑文件)。拖放一个
@@ -148,7 +148,7 @@ SHIFT，Vim 把当前目录改变为放置的第一个项目所在的目录。�
 放置文件时设置当前的参数列表。|argument-list|
 
 
-8. 单次启动还是多次启动					*beos-launch*
+8. 单次启动还是多次启动                                 *beos-launch*
 
 发布时，Vim 的应用程序标志位 (在文件类型设定里) 设为多次启动。如果你愿意，你可
 以把它们改为单次启动。这样，试图启动第二个 Vim 程序时会用第一个 Vim 打开相应的
@@ -158,7 +158,7 @@ NB: 只有 GUI 版本 有 BApplication (从而有应用程序标志位)。这一
 GUI 的版本，如果你自己编译一个的话。
 
 
-9. 字体							*beos-fonts*
+9. 字体                                                 *beos-fonts*
 
 以下方法可以设定字体 >
 
@@ -183,38 +183,38 @@ Vim 也试图用 B_ISO8859_1 编码，也被称为 ISO Latin 1 编码。这并�
 
 标准等宽的系统字体是:
 
-	      ProFontISOLatin1/Regular
-		  Courier10_BT/Roman
-		  Courier10_BT/Italic
-		  Courier10_BT/Bold
-		  Courier10_BT/Bold_Italic
+              ProFontISOLatin1/Regular
+                  Courier10_BT/Roman
+                  Courier10_BT/Italic
+                  Courier10_BT/Bold
+                  Courier10_BT/Bold_Italic
 
 标准比例的系统字体是:
 
-		    Swis721_BT/Roman
-		    Swis721_BT/Italic
-		    Swis721_BT/Bold
-		    Swis721_BT/Bold_Italic
-		Dutch801_Rm_BT/Roman
-		Dutch801_Rm_BT/Italic
-		Dutch801_Rm_BT/Bold
-		Dutch801_Rm_BT/Bold_Italic
-		   Baskerville/Roman
-		   Baskerville/Italic
-		   Baskerville/Bold
-		   Baskerville/Bold_Italic
-		 SymbolProp_BT/Regular
+                    Swis721_BT/Roman
+                    Swis721_BT/Italic
+                    Swis721_BT/Bold
+                    Swis721_BT/Bold_Italic
+                Dutch801_Rm_BT/Roman
+                Dutch801_Rm_BT/Italic
+                Dutch801_Rm_BT/Bold
+                Dutch801_Rm_BT/Bold_Italic
+                   Baskerville/Roman
+                   Baskerville/Italic
+                   Baskerville/Bold
+                   Baskerville/Bold_Italic
+                 SymbolProp_BT/Regular
 
 为了好玩，试试其中的一些字体吧。
 
 
-10. meta 键修饰符					*beos-meta*
+10. meta 键修饰符                                       *beos-meta*
 
 你可以用左右的 OPTION 键来模拟 META 键修饰符。这是因为 ALT (也就是 COMMAND) 键
 不会传给应用程序。
 
 
-11. 鼠标键映射						*beos-mouse*
+11. 鼠标键映射                                          *beos-mouse*
 
 Vim 把鼠标按钮分别称为 LeftMouse、MiddleMouse 和 RightMouse。如果你用缺省的鼠
 标设置，这些名字反映的就是事实。Vim 用以下的映射:
@@ -224,16 +224,16 @@ Vim 把鼠标按钮分别称为 LeftMouse、MiddleMouse 和 RightMouse。如果�
     Button 3 -> MiddleMouse。
 
 如果你的鼠标没有三个按钮，你可以用鼠标键击和若干修饰符来定义自己的鼠标按钮。例
-见 vim-5.x/macros/swapmous.vim。			|gui-mouse-mapping|
+见 vim-5.x/macros/swapmous.vim。                        |gui-mouse-mapping|
 
 
-12. 色彩名称						*beos-colors*
+12. 色彩名称                                            *beos-colors*
 
 Vim 有一些内建的色彩名称。附加的名字则从 $VIMRUNTIME/rgb.txt 里取得。这个文件
 基本上是 X 里的色彩数据库。为了提高效率，这个文件里的名字被缓冲存贮。
 
 
-13. 带 Perl 的编译					*beos-perl*
+13. 带 Perl 的编译                                      *beos-perl*
 
 带 Perl 支持的编译需要一点技巧。Metrowerks 编译器在找寻包含文件的位置上想法有
 些与众不同。因为有些 Perl 的包含文件和有些 Vim 的头文件重名，错误的文件被包含
@@ -250,26 +250,26 @@ Vim 有一些内建的色彩名称。附加的名字则从 $VIMRUNTIME/rgb.txt �
 
     sub doinclude
     {
-	my $filename = $_[0];
-	my $fh = new IO::File($filename, "r");
-	if (defined $fh) {
-	    print "/* Start of $filename */\n";
+        my $filename = $_[0];
+        my $fh = new IO::File($filename, "r");
+        if (defined $fh) {
+            print "/* Start of $filename */\n";
 
-	    while (<$fh>) {
-		if (/^#include "(.*)"/) {
-		    doinclude($1);
-		    print "/* Back in $filename */\n";
-		} else {
-		    print $_;
-		}
-	    }
-	    print "/* End of $filename */\n";
+            while (<$fh>) {
+                if (/^#include "(.*)"/) {
+                    doinclude($1);
+                    print "/* Back in $filename */\n";
+                } else {
+                    print $_;
+                }
+            }
+            print "/* End of $filename */\n";
 
-	    undef $fh;
-	} else {
-	    print "/* Cannot open $filename */\n";
-	    print "#include \"$filename\"\n";
-	}
+            undef $fh;
+        } else {
+            print "/* Cannot open $filename */\n";
+            print "#include \"$filename\"\n";
+        }
     }
 
     chdir     $Config{installarchlib}."/CORE";
