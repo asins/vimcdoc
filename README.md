@@ -23,6 +23,16 @@
 
     :help bufexplorer
 
+### NeoBundle 安装 ###
+
+在`.vimrc/_vimrc`文件中加入一句
+
+    NeoBundle 'asins/vimcdoc'
+
+重启VIM运行`:NeoBundleInstall`即可完成安装，然后重启VIM就能正常使用了，如：
+
+    :help bufexplorer
+
 # 申明 #
 
 文档内容来源于 [http://vimcdoc.sourceforge.net/]()，我只是简单搬过来并加入了些已经被翻译过来的插件中文文档
