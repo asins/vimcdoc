@@ -13,13 +13,13 @@
 
 将doc文件夹放到`~/.vim`(linux) / `$VIM\vimfiles`(window)目录中，然后在VIM中进行`:helptags ~/.vim/doc`(linux)或者`:helptags $VIM\vimfiles\doc`，完成之后会在doc目录下生成tag以及tag-cn文件。
 
-### Vundle安装 ###
+### Vundle 安装 ###
 
 在`.vimrc/_vimrc`文件中加入一句
 
-    Bundle 'asins/vimcdoc'
+    Plugin 'asins/vimcdoc'
 
-重启VIM运行`:BundleInstall`即可完成安装，然后重启VIM就能正常使用了，如：
+重启VIM运行`:PluginInstall`即可完成安装，然后重启VIM就能正常使用了，如：
 
     :help bufexplorer
 
