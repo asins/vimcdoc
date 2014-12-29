@@ -41,6 +41,7 @@
 
   - NERD_tree 像妈妈一样体贴的树形插件！
   - bufexplorer Buffer Explorer
+  - CtrlP 模糊检索文件, 缓冲区, 最近最多使用, 标签等的 Vim 插件
   - markdown Markdown 标记语言
   - template 智能加载模板文件
 
