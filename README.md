@@ -32,6 +32,7 @@
   - NERD_tree 像妈妈一样体贴的树形插件！
   - bufexplorer Buffer Explorer
   - markdown Markdown 标记语言
+  - matchit 扩展 "%" 的匹配功能
   - template 智能加载模板文件
 
 
