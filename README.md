@@ -13,6 +13,24 @@
 
 将doc文件夹放到`~/.vim`(linux) / `$VIM\vimfiles`(window)目录中，然后在VIM中进行`:helptags ~/.vim/doc`(linux)或者`:helptags $VIM\vimfiles\doc`，完成之后会在doc目录下生成tag以及tag-cn文件。
 
+### Pathogen 安装 ###
+
+在终端(命令提示符)下执行以下语句
+
+Linux:
+
+    cd ~/.vim/bundle && \
+    git clone git://github.com/asins/vimcdoc.git
+
+Windows:
+
+    cd (你的 Vim 配置文件目录)\bundle
+    git clone git://github.com/asins/vimcdoc.git
+
+重启VIM即可完成安装并正常使用了，如：
+
+    :help bufexplorer
+
 ### Vundle 安装 ###
 
 在`.vimrc/_vimrc`文件中加入一句
