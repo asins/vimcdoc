@@ -62,6 +62,7 @@ Windows:
   - bufexplorer Buffer Explorer
   - CtrlP 模糊检索文件, 缓冲区, 最近最多使用, 标签等的 Vim 插件
   - markdown Markdown 标记语言
+  - matchit 扩展 "%" 的匹配功能
   - template 智能加载模板文件
 
 
