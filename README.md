@@ -30,6 +30,7 @@
 已加入的插件文档，欢迎大家完善
 
   - NERD_commenter 提供许多不同的注释操作和风格的代码注释插件
+  - CtrlP 模糊的 文件, 缓冲区, 最近最多使用, 标签, ... 检索. v1.79
   - NERD_tree 像妈妈一样体贴的树形插件！
   - bufexplorer Buffer Explorer
   - markdown Markdown 标记语言
