@@ -1,5 +1,10 @@
 # VIM中文文档(Vim Chinese Documentation) #
 
+## 注意 ##
+
+从 6.3 版开始，Vim 加入了对翻译文档的支持。因而本仓库仅适用于 Vim 6.3 及以后的版本。如果你使用的是 Vim 6.2 或以前的版本，建议升级到 6.3 或更高版本。
+
+
 ## 使用方法 ##
 
 我在`.vimrc/_vimrc`文件中加入以下匹配以方便正确识别
@@ -50,6 +55,7 @@ Windows:
 重启VIM运行`:NeoBundleInstall`即可完成安装，然后重启VIM就能正常使用了，如：
 
     :help bufexplorer
+
 
 # 申明 #
 
