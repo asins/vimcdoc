@@ -6,7 +6,6 @@
 
     " 设定doc文档目录
     let helptags=$VIM."/vimfiles/doc"
-    set helplang=cn
 
 
 ### 独立安装 ###
