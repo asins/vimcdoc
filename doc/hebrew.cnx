@@ -1,12 +1,12 @@
 *hebrew.txt*    For Vim version 7.4.  最近更新: 2008年4月
 
 
-	   VIM 参考手册    by Ron Aaron (and Avner Lottem)
-				译者: Willis
-				http://vimcdoc.sf.net
+           VIM 参考手册    by Ron Aaron (and Avner Lottem)
+                                译者: Willis
+                                http://vimcdoc.sf.net
 
 
-Vim 的希伯来语支持 (选项和映射)					*hebrew*
+Vim 的希伯来语支持 (选项和映射)                                 *hebrew*
 
 
 'rightleft' 的功能是由 Avner Lottem <alottem at gmail dot com> 最早创建的。
@@ -36,7 +36,7 @@ Ron Aaron <ron at ronware dot org> 现在为支持这些功能提供帮助。
    +  'hkmapp' ('hkp') 把键盘映射设成 '根据读音的希伯来语'。
 
    注意: 这三个选项 ('hkmap'、'hkmapp' 和 'aleph') 现在已经作废。你应该用
-	 ":set keymap=hebrewp" 来代替。
+         ":set keymap=hebrewp" 来代替。
 
    +  'delcombine' ('deco')，布尔值，如果编辑 UTF-8 编码的希伯来文字，可以在一
       个字符上 (带有 niqud ) 上按 'x' 来去掉 niqud 或者 te`amim。
@@ -73,14 +73,14 @@ Ron Aaron <ron at ronware dot org> 现在为支持这些功能提供帮助。
 
    +  'hkmap' 设置时，键盘的映射如下 (标准以色利键盘):
 
-	q w e r t y u i o p
-	/ ' ק ר א ט ו ן ם פ
+        q w e r t y u i o p
+        / ' ק ר א ט ו ן ם פ
 
-	 a s d f g h j k l ; '
-	 ש ד ג כ ע י ח ל ך ף ,
+         a s d f g h j k l ; '
+         ש ד ג כ ע י ח ל ך ף ,
 
-	  z x c v b n m , . /
-	  ז ס ב ה נ מ צ ת ץ .
+          z x c v b n m , . /
+          ז ס ב ה נ מ צ ת ץ .
 
       这也是当 'keymap=hebrew' 设置时的映射方式。使用 'keymap' 的好处是它在
       UTF8 下正常工作，例如，输入的字符是正确的；'hkmap' 则不然。'keymap' 键盘
@@ -117,7 +117,7 @@ CTRL-U 并不会在插入点开始处和行尾停住。
 有时希伯来字母代码在 'isprint' 变量定义的非可显示字符的范围内。例如，在 Linux
 控制台上，希伯来字体的编码从 128 开始，而缺省的 'isprint' 变量是 @,161-255。
 结果就是所有的希伯来字母都被显示成 ~x。要解决这个问题，执行 >
-	set isprint=@,128-255
+        set isprint=@,128-255
 
 
  vim:tw=78:ts=8:ft=help:norl:
