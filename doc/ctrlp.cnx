@@ -195,7 +195,7 @@ OPTIONS                                                         *ctrlp-options*
       目录。只有在"r"选项存在的时候才生效。
   0 或者 <empty> - 禁用这项功能。
 
-注意 #1: 如果 "a" 或者 "c" 和 "r"一起被包含，当无法找到根目录时使用 "a" 或者 
+注意 #1: 如果 "a" 或者 "c" 和 "r"一起被包含，当无法找到根目录时使用 "a" 或者
 "c" 的行为（作为备选）。
 
 注意 #2: 你可以在每个缓冲区内使用 |b:var| 来设置该选项。
@@ -265,7 +265,7 @@ OPTIONS                                                         *ctrlp-options*
 <
 注意 #1: 默认情况下， |wildignore| 和 |g:ctrlp_custom_ignore| 只在 |globpath()| 被用
 来扫描文件的情况下使用，这样这些选项在那些使用 |g:ctrlp_user_command| 定义的命
-令中不会生效。 
+令中不会生效。
 
 注意 #2: 当改变选项的变量类型时，记得先 |:unlet| ，或者重启Vim来避免这个错误：
 "E706: Variable type mismatch" 。
@@ -957,7 +957,7 @@ b)  在正则表达式模式，输入字符串被按照Vim的正则表达式模�
 
     例如: 'abc\d*efg' 会被解读为 'abc\d*efg'。
 
-    如何启用正则表达式模式参见 |ctrlp-fullregexp| （按键绑定）和 
+    如何启用正则表达式模式参见 |ctrlp-fullregexp| （按键绑定）和
     |g:ctrlp_regexp_search| （选项）。
 
 c)  字符串末尾使用一个冒号':'跟随一个Vim命令来在打开那个文件后执行该命令。如果
@@ -1249,7 +1249,7 @@ Mercurial仓库: https://bitbucket.org/kien/ctrlp.vim
 ===============================================================================
 更新日志                                                      *ctrlp-changelog*
 
-    + 结合 *g:ctrlp_match_window_bottom* *g:ctrlp_match_window_reversed* 和 
+    + 结合 *g:ctrlp_match_window_bottom* *g:ctrlp_match_window_reversed* 和
       *g:ctrlp_max_height* 到 |g:ctrlp_match_window| 。
     + 新选项: |g:ctrlp_match_window| 。
 

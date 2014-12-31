@@ -1,12 +1,12 @@
 *todo.txt*      For Vim version 7.4.  最近更新: 2013年8月
 
 
-		  VIM 参考手册	  by Bram Moolenaar
-				译者: Willis
-				http://vimcdoc.sf.net
+                  VIM 参考手册    by Bram Moolenaar
+                                译者: Willis
+                                http://vimcdoc.sf.net
 
 
-			      Vim 待完成任务列表	*todo*
+                              Vim 待完成任务列表        *todo*
 
 
 这是一个很长。。。的已知漏洞，目前工作和未来希望的改进的列表 (英文)。为了使其
@@ -25,7 +25,7 @@
 1   可能不会
 -   未分类
 
-						    *votes-for-changes*
+                                                    *votes-for-changes*
 关于开发的计划，参见 |develop.txt|。如果你赞助 Vim 开发，你可以投票决定哪个项
 目值得开发。请见 |sponsor|。
 
@@ -33,7 +33,7 @@
 其中更新的部分会被转发到 vim_dev 邮件列表。该处已经提供的问题就不在下面重复
 了，除非有额外的信息。
 
-							*known-bugs*
+                                                        *known-bugs*
 ----------------------- 已知漏洞和当前工作 --------------------------
 
 Python: ":py raw_input('prompt')" doesn't work. (Manu Hack)
@@ -531,11 +531,11 @@ Does not work with NFA regexp engine:
 
 Regexp engine performance:
 - Profiling:
-	./vim -u NONE -s ~/vim/test/ruby.vim
-	./vim -u NONE -s ~/vim/test/loop.vim
-	./vim -u NONE -s ~/vim/test/alsa.vim
-	./vim -s ~/vim/test/todo.vim
-	./vim -s ~/vim/test/xml.vim
+        ./vim -u NONE -s ~/vim/test/ruby.vim
+        ./vim -u NONE -s ~/vim/test/loop.vim
+        ./vim -u NONE -s ~/vim/test/alsa.vim
+        ./vim -s ~/vim/test/todo.vim
+        ./vim -s ~/vim/test/xml.vim
     Dominique Pelle:  xmlSyncDT is particularly slow (Jun 7)
 - More test files from the src/pkg/regexp/testdata directory in the Go repo.
 - Performance tests:
@@ -1050,10 +1050,10 @@ Patch by Christian Brabandt, 2013 May 31.
 Test54 should not use shell commands.  Make it portable.
 
 The utf class table is missing some entries:
-	0x2212, minus sign 
-	0x2217, star
-	0x2500, bar
-	0x26ab, circle
+        0x2212, minus sign
+        0x2217, star
+        0x2500, bar
+        0x26ab, circle
 
 Visual line mode doesn't highlight properly when 'showbreak' is used and the
 line doesn't fit. (Dasn, 2008 May 1)
@@ -1373,7 +1373,7 @@ Ruby completion is insecure.  Can this be fixed?
 
 When 'backupskip' is set from $TEMP special characters need to be escaped.
 (patch by Grembowietz, 2007 Feb 26, not quite right)
-Another problem is that file_pat_to_reg_pat() doesn't recognize "\\", so "\\(" 
+Another problem is that file_pat_to_reg_pat() doesn't recognize "\\", so "\\("
 will be seen as a path separator plus "\(".
 
 gvim d:\path\path\(FILE).xml should not remove the \ before the (.
@@ -1438,9 +1438,9 @@ background make.  ":bgcancel" interrupts it.
 A.Politz may work on this.
 
 These two abbreviations don't give the same result:
-	let asdfasdf = "xyz\<Left>"
-	cabbr XXX <C-R>=asdfasdf<CR>
-	cabbr YYY xyz<Left>
+        let asdfasdf = "xyz\<Left>"
+        cabbr XXX <C-R>=asdfasdf<CR>
+        cabbr YYY xyz<Left>
 
 Michael Dietrich: maximized gvim sometimes displays output of external command
 partly. (2006 Dec 7)
@@ -1562,11 +1562,11 @@ script.  Do "set compatible" after startup?
 
 It's difficult to debug numbered functions (function in a Dictionary).  Print
 the function name before resolving it to a number?
-	let d = {}
-	fun! d.foo()
-	  echo "here"
-	endfun
-	call d.foo(9)
+        let d = {}
+        fun! d.foo()
+          echo "here"
+        endfun
+        call d.foo(9)
 
 Add a mark for the other end of the Visual area (VIsual pos).  '< and '> are
 only set after Visual moded is ended.
@@ -1698,7 +1698,7 @@ Patch to support horizontal scroll wheel in GTK. Untested. (Bjorn Winckler,
 等待补丁信息的更新:
 9   Mac unicode patch (Da Woon Jung, Eckehard Berns):
     8   Add patch from Muraoka Taro (Mar 16) to support input method on Mac?
-	New patch 2004 Jun 16
+        New patch 2004 Jun 16
     - selecting proportional font breaks display
     - UTF-8 text causes display problems.  Font replacement causes this.
     - Command-key mappings do not work. (Alan Schmitt)
@@ -1729,7 +1729,7 @@ Patch to support horizontal scroll wheel in GTK. Untested. (Bjorn Winckler,
 8   "fg" and "bg" don't work in an xterm.  Get default colors from xterm
     with an ESC sequence.
     xterm can send colors for many things.  E.g. for the cursor:
-	<Esc>]12;?<Bel>
+        <Esc>]12;?<Bel>
     Can use this to get the background color and restore the colors on exit.
 7   Add "DefaultFG" and "DefaultBG" for the colors of the menu. (Marcin
     Dalecki has a patch for Motif and Carbon)
@@ -1737,25 +1737,25 @@ Patch to support horizontal scroll wheel in GTK. Untested. (Bjorn Winckler,
     line in between columns (e.g., for 'textwidth').
     Patch to add 'hlcolumn' from Vit Stradal, 2004 May 20.
 8   Add functions:
-    gettext()		Translate a message.  (Patch from Yasuhiro Matsumoto)
-			Update 2004 Sep 10
-			Another patch from Edward L. Fox (2005 Nov 24)
-			Search in 'runtimepath'?
-			More docs needed about how to use this.
-			How to get the messages into the .po files?
-    strchars()		Like strlen() and strwidth() but counting characters
-			instead of bytes.
-    confirm()		add "flags" argument, with 'v' for vertical
-			    layout and 'c' for console dialog. (Haegg)
-			    Flemming Madsen has a patch for the 'c' flag
-			    (2003 May 13)
-    raisewin()		raise gvim window (see HierAssist patch for
-			    Tcl implementation ~/vim/HierAssist/ )
-    taglist()		add argument to specify maximum number of matches.
-			useful for interactive things or completion.
+    gettext()           Translate a message.  (Patch from Yasuhiro Matsumoto)
+                        Update 2004 Sep 10
+                        Another patch from Edward L. Fox (2005 Nov 24)
+                        Search in 'runtimepath'?
+                        More docs needed about how to use this.
+                        How to get the messages into the .po files?
+    strchars()          Like strlen() and strwidth() but counting characters
+                        instead of bytes.
+    confirm()           add "flags" argument, with 'v' for vertical
+                            layout and 'c' for console dialog. (Haegg)
+                            Flemming Madsen has a patch for the 'c' flag
+                            (2003 May 13)
+    raisewin()          raise gvim window (see HierAssist patch for
+                            Tcl implementation ~/vim/HierAssist/ )
+    taglist()           add argument to specify maximum number of matches.
+                        useful for interactive things or completion.
     col('^')            column of first non-white character.
-			Can use "len(substitute(getline('.'), '\S.*', '', ''))
-			+ 1", but that's ugly.
+                        Can use "len(substitute(getline('.'), '\S.*', '', ''))
+                        + 1", but that's ugly.
 7   Add patch from Benoit Cerrina to integrate Vim and Perl functions
     better.  Now also works for Ruby (2001 Nov 10)
 -   Patch from Herculano de Lima Einloft Neto for better formatting of the
@@ -1799,7 +1799,7 @@ Vi 不兼容性:
     loading the argument if there is a file already.  When no file argument
     given, Vi starts with an empty buffer, Vim keeps the loaded file. (Bearded)
 6   In Insert mode, when using <BS> or <Del>, don't wipe out the text, but
-    only move back the cursor.	Behaves like '$' in 'cpoptions'.  Use a flag
+    only move back the cursor.  Behaves like '$' in 'cpoptions'.  Use a flag
     in 'cpoptions' to switch this on/off.
 8   When editing a file which is a symbolic link, and then opening another
     symbolic link on the same file, Vim uses the name of the first one.
@@ -1816,7 +1816,7 @@ Vi 不兼容性:
 7   The ":map" command output overwrites the command.  Perhaps it should keep
     the ":map" when it's used without arguments?
 7   CTRL-L is not the end of a section?  It is for Posix!  Make it an option.
-7   Implement 'prompt' option.	Init to off when stdin is not a tty.
+7   Implement 'prompt' option.  Init to off when stdin is not a tty.
 7   CTRL-T in Insert mode inserts 'shiftwidth' of spaces at the cursor.  Add a
     flag in 'cpoptions' for this.
 7   Add a way to send an email for a crashed edit session.  Create a file when
@@ -1826,7 +1826,7 @@ Vi 不兼容性:
 7   Vi doesn't do autoindenting when input is not from a tty (in Ex mode).
 7   "z3<CR>" should still use the whole window, but only redisplay 3 lines.
 7   ":tag xx" should move the cursor to the first non-blank.  Or should it go
-    to the match with the tag?	Option?
+    to the match with the tag?  Option?
 7   Implement 'autoprint'/'ap' option.
 7   Add flag in 'cpoptions' that makes <BS> after a count work like <Del>
     (Sayre).
@@ -1836,10 +1836,10 @@ Vi 不兼容性:
     In Vi you can edit in visual mode, and when doing "Q" you jump to the next
     match.  Nvi can do it too.
 7   Support '\' for line continuation in Ex mode for these commands: (Luebking)
-	g/./a\		    g/pattern1/ s/pattern2/rep1\\
-	line 1\		    line 2\\
-	line 2\		    line 3\\
-	.		    line4/
+        g/./a\              g/pattern1/ s/pattern2/rep1\\
+        line 1\             line 2\\
+        line 2\             line 3\\
+        .                   line4/
 6   ":e /tmp/$tty" doesn't work.  ":e $uid" does.  Is $tty not set because of
     the way the shell is started?
 6   Vi compatibility (optional): make "ia<CR><ESC>10." do the same strange
@@ -2040,10 +2040,10 @@ GUI:
     - regexp on/off
     - search in selection/buffer/all buffers/directory
        when all buffers/directory is used:
-	- filter for file name
+        - filter for file name
        when directory is used:
-	- subdirectory on/off
-	- top directory browser
+        - subdirectory on/off
+        - top directory browser
 8   gui_check_colors() is not called at the right moment.  Do it much later,
     to avoid problems.
 8   gui_update_cursor() is called for a cursor shape change, even when there
@@ -2105,7 +2105,7 @@ MSDOS/DJGPP:
 8   The Dos32 version (DJGPP) can't use long file names on Windows NT.
     Check if new package can be used (v2misc/ntlfn08[bs].zip).
 8   setlocale() is bogus.
-8   Vim busy waits for new characters or mouse clicks.	Should put in some
+8   Vim busy waits for new characters or mouse clicks.  Should put in some
     sort of sleep, to avoid eating 50% of the CPU time.  Test on an unpatched
     Windows 95 system!
 8   DJGPP: when shell is bash, make fails. (Donahoe)
@@ -2137,14 +2137,14 @@ MSDOS、OS/2 和 Win32:
     writing uses "foo.txt".  Should obtain the real file name.
 8   Should $USERPROFILE be preferred above $HOMEDRIVE/$HOMEPATH?  No, but it's
     a good fallback, thus use:
-	    $HOME
-	    $HOMEDRIVE$HOMEPATH
-	    SHGetSpecialFolderPath(NULL, lpzsPath, CSIDL_APPDATA, FALSE);
-	    $USERPROFILE
-	    SHGetSpecialFolderPath(NULL, lpzsPath, CSIDL_COMMON_APPDATA, FALSE);
-	    $ALLUSERSPROFILE
-	    $SYSTEMDRIVE\
-	    C:\
+            $HOME
+            $HOMEDRIVE$HOMEPATH
+            SHGetSpecialFolderPath(NULL, lpzsPath, CSIDL_APPDATA, FALSE);
+            $USERPROFILE
+            SHGetSpecialFolderPath(NULL, lpzsPath, CSIDL_COMMON_APPDATA, FALSE);
+            $ALLUSERSPROFILE
+            $SYSTEMDRIVE\
+            C:\
 8   Win32 console: <M-Up> and <M-Down> don't work. (Geddes)  We don't have
     special keys for these.  Should use modifier + key.
 8   Win32 console: caps-lock makes non-alpha keys work like with shift.
@@ -2178,7 +2178,7 @@ Win32 控制台:
      4) Go to File->Save As menu item and type ".bashrc" as the file name.
      5) Press "Yes" to indicate that I want to overwrite the file.
      6) Note that the message "File exists (add ! to override)" is displayed
-	and the file is not saved.
+        and the file is not saved.
     Use FindFirstFile() to expand a file name and directory in the path to its
     long name.
 8   Also implement 'conskey' option for the Win32 console version?  Look at
@@ -2573,13 +2573,13 @@ Macintosh:
 -   Win32 GUI: mouse wheel always scrolls rightmost window.  The events arrive
     in Vim as if the rightmost scrollbar was used.
 -   GTK with Gnome: Produces an error message when starting up:
-	Gdk-WARNING **: locale not supported by C library
+        Gdk-WARNING **: locale not supported by C library
     This is caused by the gnome library gnome_init() setting $LC_CTYPE to
     "en_US".  Not all systems support this locale name, thus causing the
     error.  Hopefully a newer version of GTK/Gnome fixes this problem.
 -   GTK 2: With this mapping the hit-enter prompt is _sometimes_ below the
     screen, at other times there is a grey area below the command line:
-	:nmap <F11> :if &guioptions=~'m' \| set guioptions-=m \| else \| set guioptions+=m \| endif<cr>
+        :nmap <F11> :if &guioptions=~'m' \| set guioptions-=m \| else \| set guioptions+=m \| endif<cr>
 -   GTK: When pasting a selection from Vim to xclipboard gvim crashes with a
     ABRT signal.  Probably an error in the file gdkselection.c, the assert
     always fails when XmbTextListToTextProperty() fails. (Tom Allard)
@@ -2594,7 +2594,7 @@ Macintosh:
     "Edit with Vim" is limited.  The maximum command line length is 255 chars.
 
 --------------------------  扩展及改进 ---------------------------
-						    *extensions-improvements*
+                                                    *extensions-improvements*
 
 修正所有漏洞之后要新增的最有意思的功能:
 -   Using ":exe edit fname" has escaping problems.  Use ":edit ++(fname)".
@@ -2700,10 +2700,10 @@ Macintosh:
 8   Add ":plugininstall" command.  Can be used to install a plugin file that
     includes documentation.  Let the user select a directory from
     'runtimepath'.
-	" Vim plugin
-	<main plugin code>
-	" >>> plugin help start <<<
-	<plugin docs>
+        " Vim plugin
+        <main plugin code>
+        " >>> plugin help start <<<
+        <plugin docs>
 -   Add mappings local to a window: ":map <window> ..."?
 9   Add buffer-local menu.  Should offer a choice between removing the menu or
     disabling it.  Be careful that tear-offs don't disappear (keep one empty
@@ -2726,7 +2726,7 @@ Macintosh:
     font, etc.)
 8   Make GUI menu in tab pages line configurable.  Like the popup menu.
 8   balloons for the tab page labels that are shortened to show the full path.
-7   :tabdup	 duplicate the tab with all its windows.
+7   :tabdup      duplicate the tab with all its windows.
 7   Option to put tab line at the left or right?  Need an option to specify
     its width.  It's like a separate window with ":tabs" output.
 7   Add local variables for each tab page?
@@ -2743,7 +2743,7 @@ Macintosh:
     don't have a spell file.  Useful when there is also text in other
     languages in the file.
 -   Support more regions? Caolan McNamara argues it's needed for es_XX.
-    https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=219777    
+    https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=219777
 -   Unicode defines another quote character: 0x2019.  Use it as an equivalent
     of a single quote, thus use it as a word character like a quote and match
     with words, replacing the curly quote with a single quote.
@@ -2792,13 +2792,13 @@ Macintosh:
       COMPOUNDMIN and COMPOUNDWORDMAX to a reasonable value.
     - PSEUDOROOT == NEEDAFFIX
     - COMPOUNDROOT -> COMPOUNDED?  For a word that already is a compound word
-	    Or use COMPOUNDED2, COMPOUNDED3, etc.
+            Or use COMPOUNDED2, COMPOUNDED3, etc.
 -   CIRCUMFIX: when a word uses a prefix marked with the CIRCUMFIX flag, then
     the word must also have a suffix marked with the CIRCUMFIX flag.  It's a
     bit primitive, since only one flag is used, which doesn't allow matching
     specific prefixes with suffixes.
     Alternative:
-	PSFX {flag} {pchop} {padd} {pcond} {schop} {sadd}[/flags] {scond}
+        PSFX {flag} {pchop} {padd} {pcond} {schop} {sadd}[/flags] {scond}
     We might not need this at all, you can use the NEEDAFFIX flag and the
     affix which is required.
 -   When a suffix has more than one syllable, it may count as a word for
@@ -2816,8 +2816,8 @@ Macintosh:
     Add ":syntax contains {pattern} add=@Spell" command?  A bit like ":syn
     cluster" but change the contains list directly for matching syntax items.
 -   References: MySpell library (in OpenOffice.org).
-	http://spellchecker.mozdev.org/source.html
-	http://whiteboard.openoffice.org/source/browse/whiteboard/lingucomponent/source/spellcheck/myspell/
+        http://spellchecker.mozdev.org/source.html
+        http://whiteboard.openoffice.org/source/browse/whiteboard/lingucomponent/source/spellcheck/myspell/
       author: Kevin Hendricks <kevin.hendricks@sympatico.ca>
 8   It is currently not possible to mark "can not" as rare, because "can" and
     "not" are good words.  Find a way to let "rare" overrule "good"?
@@ -2826,7 +2826,7 @@ Macintosh:
     use of words with a dash.
 7   Insert mode completion mechanism that uses the spell word lists.
 8   Add hl groups to 'spelllang'?
-	:set spelllang=en_us,en-rare/SpellRare,en-math/SpellMath
+        :set spelllang=en_us,en-rare/SpellRare,en-math/SpellMath
     More complicated: Regions with different languages?  E.g., comments
     in English, strings in German (po file).
 
@@ -2837,7 +2837,7 @@ Diff 模式:
     It's quite big and badly documented though.
 8   Use diff mode to show the changes made in a buffer (compared to the file).
     Use an unnamed buffer, like doing:
-	new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+        new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
     Also show difference with the file when editing started?  Should show what
     can be undone. (Tom Popovich)
 7   Add cursor-binding: when moving the cursor in one diff'ed buffer, also
@@ -2872,8 +2872,8 @@ Diff 模式:
     using the wininfo in wi_folds.
 -   When currently editing the first file in the argument list the session
     file can contain:
-	args version.c main.c
-	edit version.c
+        args version.c main.c
+        edit version.c
     Can editing version.c twice be avoided?
 -   'foldmethod' "textobject": fold on sections and paragraph text objects.
 -   "zuf": undo change in manual fold. "zUf" redo change in manual fold.  How
@@ -2890,7 +2890,7 @@ Diff 模式:
 多字节字符处理:
 -   When editing a file with both utf-8 and latin1 text Vim always falls back
     to latin1.  Add a command to convert the latin1 characters to utf-8?
-	:unmix utf-8,latin1 filename
+        :unmix utf-8,latin1 filename
     Would only work when 'encoding' is utf-8.
 9   When the tail byte of a double-byte character is illegal (e.g., a CR), the
     display is messed up (Yasuhiro Matsumoto).  Should check for illegal
@@ -3035,7 +3035,7 @@ Diff 模式:
     background) when on one of the parens or in between them.
     Option for the matchparen plugin?
 8   When using a cterm, and no ctermfg or ctermbg are defined, use start/stop
-    sequences.	Add remark in docs that :if 'term' == "term-name" should be
+    sequences.  Add remark in docs that :if 'term' == "term-name" should be
     used.
 8   Add @spell cluster to String and Comment groups for many languages.  Will
     allow spell checking. (Fleiner)
@@ -3047,7 +3047,7 @@ Diff 模式:
     when there is a match, the expression would be evaluated to find out what
     highlight group to use.  Could be used to check if the shell used in a
     password file appears in /etc/shells. (Nikolai Weibull)
-	syn match =s:checkShell(v:match) contained 'pattern'
+        syn match =s:checkShell(v:match) contained 'pattern'
 8   Make it possible to only highlight a sub-expression of a match.  Like
     using "\1" in a ":s" command.
 8   Support for deleting syntax items:
@@ -3077,7 +3077,7 @@ Diff 模式:
 8   Add an option to restrict the updating of syntax highlighting to the
     current line while in Insert mode.
 8   When guessing value of 'background', the syntax file has already been
-    loaded (from the .gvimrc).	After changing 'background', load it again?
+    loaded (from the .gvimrc).  After changing 'background', load it again?
 8   Add ":syn resync" command, to re-parse the whole file until the current
     display position.
 8   Should support "me" offset for a region start pattern.  To be used to
@@ -3097,7 +3097,7 @@ Diff 模式:
 7   Add "semitrans": Add highlighting.  E.g., make the text bold, but keep the
     colors.  And add colors, so that Green+Red becomes Yellow.
     E.g. for this html:
-	<B> bold text <I> italic+bold text </B> italic text </I>
+        <B> bold text <I> italic+bold text </B> italic text </I>
 7   CTRL-] checks the highlight group for finding out what the tag is.
 7   Add an explanation how a list of words can be used to highlight misspelled
     words.
@@ -3122,7 +3122,7 @@ Diff 模式:
     ISP, LDL, Icon, ratfor.  And check "nedit/source/highlight.c".
 6   Add possibility to have background color continue until the right edge of
     the window.  Useful for comment blocks and function headings. (Rogall)
--   Make it possible to add "contains" items for all items in a group.	Useful
+-   Make it possible to add "contains" items for all items in a group.  Useful
     when extending an already existing syntax file.
 -   Add line-continuation pattern for non-syncing items too?
 -   Add possibility to highlight the whole line, including the right margin
@@ -3131,7 +3131,7 @@ Diff 模式:
     'c': highlight match for character under the cursor.
     'b': highlight the previous (, and its match.
     'a': highlight all text from the previous ( until its match.
-	 Also for {}, <>, etc.?
+         Also for {}, <>, etc.?
     'e': highlight all braces without a match (slow?)
     OR: add an argument "cursor" to the syntax command, which means that the
     region/match/keyword is only highlighted when the cursor is on it.
@@ -3164,9 +3164,9 @@ Diff 模式:
     2006 Dec 11.
 -   range for ":exec", pass it on to the executed command.  (Webb)
 8   ":{range}source": source the lines from the current file.
-	You can already yank lines and use :@" to execute them.
-	Most of do_source() would not be used, need a new function.
-	It's easy when not doing breakpoints or profiling.
+        You can already yank lines and use :@" to execute them.
+        Most of do_source() would not be used, need a new function.
+        It's easy when not doing breakpoints or profiling.
     Requires copying the lines into a list and then creating a function to
     execute lines from the list.  Similar to getnextac().
 7   ":include" command: just like ":source" but doesn't start a new scriptID?
@@ -3194,52 +3194,52 @@ Diff 模式:
 6   Add ++ and -- operators?  They only work on variables (lvals), how to
     implement this?
 8   Add functions:
-	has(":command")		Check if ":command" works.  compare function
-				with "ex_ni".  E.g. for ":simalt".
-	system()		With a List argument.  Bypasses the shell, use
-				exec() directly.  (Bob Hiestand)
-	escape()		Add argument to specify what to escape with.
-	modestack()		Instead of just the current mode return the
-				stack of Insert / CTRL-O / :normal things.
-	realname()		Get user name (first, last, full)
-				user_fullname() patch by Nikolai Weibull, Nov
-				3 2002
-				Only add this when also implemented for
-				non-Unix systems, otherwise a shell cmd could
-				be used.
-				get_user_name() gets login name.
-	menuprop({name}, {idx}, {what})
-				Get menu property of menu {name} item {idx}.
-				menuprop("", 1, "name") returns "File".
-				menuprop("File", 1, "n") returns "nmenu
-				File.Open..." argument.
-				Patch by Ilya Sher, 2004 Apr 22
-				Return a list of menus and/or a dictionary
-				with properties instead.
-	mapname({idx}, mode)	return the name of the idx'th mapping.
-				Patch by Ilya Sher, 2004 Mar 4.
-				Return a list instead.
-	char2hex()		convert char string to hex string.
-	crypt()			encrypt string
-	decrypt()		decrypt string
-	base64enc()		base 64 encoding
-	base64dec()		base 64 decoding
-	attributes()		return file protection flags "drwxrwxrwx"
-	filecopy(from, to)	Copy a file
-	shorten(fname)		shorten a file name, like home_replace()
-	perl(cmd)		call Perl and return string
-	inputrl()		like input() but right-to-left
-	typed()			return the characters typed and consumed (to
-				find out what happened)
-	virtualmode()		add argument to obtain whether "$" was used in
-				Visual block mode.
-	getacp()		Win32: get codepage (Glenn Maynard)
-	deletebufline()		delete line in any buffer
-	appendbufline()		append line in any buffer
-	libcall()		Allow more than one argument.
-	libcallext()		Like libcall(), but using a callback function
-				to allow the library to execute a command or
-				evaluate an expression.
+        has(":command")         Check if ":command" works.  compare function
+                                with "ex_ni".  E.g. for ":simalt".
+        system()                With a List argument.  Bypasses the shell, use
+                                exec() directly.  (Bob Hiestand)
+        escape()                Add argument to specify what to escape with.
+        modestack()             Instead of just the current mode return the
+                                stack of Insert / CTRL-O / :normal things.
+        realname()              Get user name (first, last, full)
+                                user_fullname() patch by Nikolai Weibull, Nov
+                                3 2002
+                                Only add this when also implemented for
+                                non-Unix systems, otherwise a shell cmd could
+                                be used.
+                                get_user_name() gets login name.
+        menuprop({name}, {idx}, {what})
+                                Get menu property of menu {name} item {idx}.
+                                menuprop("", 1, "name") returns "File".
+                                menuprop("File", 1, "n") returns "nmenu
+                                File.Open..." argument.
+                                Patch by Ilya Sher, 2004 Apr 22
+                                Return a list of menus and/or a dictionary
+                                with properties instead.
+        mapname({idx}, mode)    return the name of the idx'th mapping.
+                                Patch by Ilya Sher, 2004 Mar 4.
+                                Return a list instead.
+        char2hex()              convert char string to hex string.
+        crypt()                 encrypt string
+        decrypt()               decrypt string
+        base64enc()             base 64 encoding
+        base64dec()             base 64 decoding
+        attributes()            return file protection flags "drwxrwxrwx"
+        filecopy(from, to)      Copy a file
+        shorten(fname)          shorten a file name, like home_replace()
+        perl(cmd)               call Perl and return string
+        inputrl()               like input() but right-to-left
+        typed()                 return the characters typed and consumed (to
+                                find out what happened)
+        virtualmode()           add argument to obtain whether "$" was used in
+                                Visual block mode.
+        getacp()                Win32: get codepage (Glenn Maynard)
+        deletebufline()         delete line in any buffer
+        appendbufline()         append line in any buffer
+        libcall()               Allow more than one argument.
+        libcallext()            Like libcall(), but using a callback function
+                                to allow the library to execute a command or
+                                evaluate an expression.
 7   Make bufname("'0") return the buffer name from mark '0.  How to get the
     column and line number?  col("'0") currently returns zero.
 8   argc() returns 0 when using "vim -t tag".  How to detect that no file was
@@ -3248,7 +3248,7 @@ Diff 模式:
     List?  Or extra parameter to argv()?
 8   Add command arguments with three dashes, passed on to Vim scripts.
 7   Add optional arguments to user functions:
-	:func myFunc(arg1, arg2, arg3 = "blah", arg4 = 17)
+        :func myFunc(arg1, arg2, arg3 = "blah", arg4 = 17)
 6   User functions: Functions local to buffer "b:func()"?
 8   For Strings add ":let var[{expr}] = {expr}".  When past the end of "var"
     just ignore.
@@ -3260,18 +3260,18 @@ Diff 模式:
 7   Add synIDlist(), making the whole list of syntax items on the syntax stack
     available as a List.
 8   Add autocommand-event for when a variable is changed:
-	:au VarChanged {varname} {commands}
+        :au VarChanged {varname} {commands}
 8   Add "has("gui_capable")", to check if the GUI can be started.
 8   Add possibility to use variables like registers: characterwise (default),
-    linewise (when ending in '\n'), blockwise (when ending in '\001').	reg0,
+    linewise (when ending in '\n'), blockwise (when ending in '\001').  reg0,
     rega, reg%, etc.  Add functions linewise({expr}), blockwise({expr}) and
     charwise({expr}).
 7   Make it possible to do any command on a string variable (make a buffer
     with one line, containing the string).  Maybe add an (invisible) scratch
     buffer for this?
-	result = scratch(string, command)
-	result = apply(string, command)
-	result = execute(string, command)
+        result = scratch(string, command)
+        result = apply(string, command)
+        result = execute(string, command)
     "command" would use <> notation.
     Does scratch buffer have a number?  Or re-use same number?
 7   Add function to generate unique number (date in milliseconds).
@@ -3431,7 +3431,7 @@ Diff 模式:
     etc.  At least there should be no prompt. (Smulders)  And don't clear the
     screen when reading commands from stdin. (Kendall)
     --> Make a difference between informative messages, prompts, etc. and
-	error messages, printing text, etc.
+        error messages, printing text, etc.
 8   Window should be redrawn when resizing at the hit-enter prompt.
     Also at the ":tselect" prompt.  Find a generic solution for redrawing when
     a prompt is present (with a callback function?).
@@ -3496,11 +3496,11 @@ Perl 接口:
 
 共享库:
 6   Add support for loading shared libraries, and calling functions in it.
-	:libload internal-name libname
-	:libunload internal-name
-	:liblist
-	:libcall internal-name function(arg1, arg2, ...)
-	:libcall function(arg1, arg2, ...)
+        :libload internal-name libname
+        :libunload internal-name
+        :liblist
+        :libcall internal-name function(arg1, arg2, ...)
+        :libcall function(arg1, arg2, ...)
     libcall() can have only one integer or String argument at the moment.
 6   Have a look on how Perl handles loading dynamic libraries.
 
@@ -3537,11 +3537,11 @@ Perl 接口:
     what you were working on.
 7   When using CTRL-] on someClass::someMethod, separate class from method and
     use ":ta class:someClass someMethod".
-    Include C++ tags changes (Bertin).	Change "class::func" tag into "func"
+    Include C++ tags changes (Bertin).  Change "class::func" tag into "func"
     with "class=class"?  Docs in oldmail/bertin/in.xxx.
 7   Add ":tagargs", to set values for fields:
-	:tagargs class:someclass file:version.c
-	:tagargs clear
+        :tagargs class:someclass file:version.c
+        :tagargs clear
     These are then the default values (changes the order of priority in tag
     matching).
 7   Support for "gtags" and "global"?  With ":rtag" command?
@@ -3571,7 +3571,7 @@ Win32 GUI:
 8   Could keep console open to run multiple commands, to avoid the need to hit
     return in every console.
     Also: Look at how Emacs does run external commands:
-	http://www.cs.washington.edu/homes/voelker/ntemacs.html.
+        http://www.cs.washington.edu/homes/voelker/ntemacs.html.
 8   Need a separate PopUp menu for modeless selection.  Need two new commands:
     Copy selection to clipboard, Paste selection (as typed text).
 8   Support copy/paste for other file formats.  At least HTML, perhaps RTF.
@@ -3625,7 +3625,7 @@ GUI:
 8   Visual highlighting should keep the same font (bold, italic, etc.).
 8   Add flag to 'guioptions' to not put anything in the clipboard at all?
 8   Should support a way to use keys that we don't recognize yet.  Add a
-    command that adds entries to special_keys somehow.	How do we make this
+    command that adds entries to special_keys somehow.  How do we make this
     portable (X11, Win32, ..)?
 7   Add a flag to 'guioptions' that tells not to remove inactive menu items.
     For systems where greying-out or removing menu items is very slow.  The
@@ -3718,44 +3718,44 @@ GUI:
     "unix", thus writing the file changes it.  Somehow detect that the read
     command used dos fileformat.  Same for 'fileencoding'.
 -   Add events to autocommands:
-    Error	    - When an error happens
-    NormalEnter	    - Entering Normal mode
+    Error           - When an error happens
+    NormalEnter     - Entering Normal mode
     ReplaceEnter    - Entering Replace mode
-    CmdEnter	    - Entering Cmdline mode (with type of cmdline to allow
-			different mapping)
-    VisualEnter	    - Entering Visual mode
-    *Leave	    - Leaving a mode (in pair with the above *Enter)
+    CmdEnter        - Entering Cmdline mode (with type of cmdline to allow
+                        different mapping)
+    VisualEnter     - Entering Visual mode
+    *Leave          - Leaving a mode (in pair with the above *Enter)
     VimLeaveCheck    - Before Vim decides to exit, so that it can be cancelled
-		      when exiting isn't a good idea.
+                      when exiting isn't a good idea.
     CursorHoldC     - CursorHold while command-line editing
-    WinMoved	    - when windows have been moved around, e.g, ":wincmd J"
+    WinMoved        - when windows have been moved around, e.g, ":wincmd J"
     CmdUndefined    - Like FuncUndefined but for user commands.
-    SearchPost	    - After doing a search command (e.g. to do "M")
+    SearchPost      - After doing a search command (e.g. to do "M")
     PreDirChanged/PostDirChanged
-		    - Before/after ":cd" has been used (for changing the
-		      window title)
-    ShutDown	    - when the system is about to shut down
+                    - Before/after ":cd" has been used (for changing the
+                      window title)
+    ShutDown        - when the system is about to shut down
     InsertCharPost  - user typed a character in Insert mode, after inserting
-		      the char.
-    BufModified	    - When a buffer becomes modified, or unmodified (for
-		      putting a [+] in the window title or checking out the
-		      file from CVS).
+                      the char.
+    BufModified     - When a buffer becomes modified, or unmodified (for
+                      putting a [+] in the window title or checking out the
+                      file from CVS).
     BufFirstChange  - When making a change, when 'modified' is set.  Can be
-		      used to do a :preserve for remote files.
-    BufChange	    - after a change was made.  Set some variables to indicate
-		      the position and number of inserted/deleted lines, so
-		      that marks can be updated.  HierAssist has patch to add
-		      BufChangePre, BufChangePost and RevertBuf. (Shah)
-    ViewChanged	    - triggered when the text scrolls and when the window size
-		      changes.
-    WinResized	    - After a window has been resized
-    WinClose	    - Just before closing a window
+                      used to do a :preserve for remote files.
+    BufChange       - after a change was made.  Set some variables to indicate
+                      the position and number of inserted/deleted lines, so
+                      that marks can be updated.  HierAssist has patch to add
+                      BufChangePre, BufChangePost and RevertBuf. (Shah)
+    ViewChanged     - triggered when the text scrolls and when the window size
+                      changes.
+    WinResized      - After a window has been resized
+    WinClose        - Just before closing a window
 -   Write the file now and then ('autosave'):
-				  *'autosave'* *'as'* *'noautosave'* *'noas'*
+                                  *'autosave'* *'as'* *'noautosave'* *'noas'*
     'autosave' 'as' number  (default 0)
-	    Automatically write the current buffer to file N seconds after the
-	    last change has been made and when |'modified'| is still set.
-	    Default: 0 = do not autosave the buffer.
+            Automatically write the current buffer to file N seconds after the
+            last change has been made and when |'modified'| is still set.
+            Default: 0 = do not autosave the buffer.
     Alternative: have 'autosave' use 'updatetime' and 'updatecount' but make
     them save the file itself besides the swapfile.
 
@@ -3764,29 +3764,29 @@ GUI:
 -   Add a flag to 'complete' to be able to do omni completion with CTRL-N (and
     mix it with other kinds of completion).
 -   Ideas from the Vim 7 BOF at SANE:
-	- For interpreted languages, use the interpreter to obtain information.
-	  Should work for Java (Eclipse does this), Python, Tcl, etc.
-	  Richard Emberson mentioned working on an interface to Java.
-	- Check Readline for its completion interface.
+        - For interpreted languages, use the interpreter to obtain information.
+          Should work for Java (Eclipse does this), Python, Tcl, etc.
+          Richard Emberson mentioned working on an interface to Java.
+        - Check Readline for its completion interface.
 -   Ideas from others:
-	http://www.wholetomato.com/
-	http://www.vim.org/scripts/script.php?script_id=747
-	    http://sourceforge.net/projects/insenvim
-		or http://insenvim.sourceforge.net
-	    Java, XML, HTML, C++, JSP, SQL, C#
-	    MS-Windows only, lots of dependencies (e.g. Perl, Internet
-		explorer), uses .dll shared libraries.
-	    For C++ uses $INCLUDE environment var.
-	    Uses Perl for C++.
-	    Uses ctags to find the info:
-		ctags -f $allTagsFile --fields=+aiKmnsSz --language-force=C++ --C++-kinds=+cefgmnpsut-dlux -u $files
-	www.vim.org script 1213 (Java Development Environment) (Fuchuan Wang)
-	IComplete: http://www.vim.org/scripts/script.php?script_id=1265
-	    and http://stud4.tuwien.ac.at/~e0125672/icomplete/
-	http://cedet.sourceforge.net/intellisense.shtml (for Emacs)
-	Ivan Villanueva has something for Java.
-	Emacs: http://www.xref-tech.com/xrefactory/more_c_completion.html
-	Completion in .NET framework SharpDevelop: http://www.icsharpcode.net
+        http://www.wholetomato.com/
+        http://www.vim.org/scripts/script.php?script_id=747
+            http://sourceforge.net/projects/insenvim
+                or http://insenvim.sourceforge.net
+            Java, XML, HTML, C++, JSP, SQL, C#
+            MS-Windows only, lots of dependencies (e.g. Perl, Internet
+                explorer), uses .dll shared libraries.
+            For C++ uses $INCLUDE environment var.
+            Uses Perl for C++.
+            Uses ctags to find the info:
+                ctags -f $allTagsFile --fields=+aiKmnsSz --language-force=C++ --C++-kinds=+cefgmnpsut-dlux -u $files
+        www.vim.org script 1213 (Java Development Environment) (Fuchuan Wang)
+        IComplete: http://www.vim.org/scripts/script.php?script_id=1265
+            and http://stud4.tuwien.ac.at/~e0125672/icomplete/
+        http://cedet.sourceforge.net/intellisense.shtml (for Emacs)
+        Ivan Villanueva has something for Java.
+        Emacs: http://www.xref-tech.com/xrefactory/more_c_completion.html
+        Completion in .NET framework SharpDevelop: http://www.icsharpcode.net
 -   Pre-expand abbreviations, show which abbrevs would match?
 
 
@@ -3870,12 +3870,12 @@ GUI:
       getcmdline() into edit().  Need to solve conflicts between Insert mode
       and Command-line mode commands.  Make it work like Korn shell and tcsh.
       Problems:
-	- Insert: completion with 'wildchar'
-	- Insert: use cmdline abbreviations
-	- Insert: CTRL-D deletes indent instead of listing matches
-	- Normal: no CTRL-W commands
-	- Normal: no ":" commands?
-	- Normal: allow Visual mode only within one line.
+        - Insert: completion with 'wildchar'
+        - Insert: use cmdline abbreviations
+        - Insert: CTRL-D deletes indent instead of listing matches
+        - Normal: no CTRL-W commands
+        - Normal: no ":" commands?
+        - Normal: allow Visual mode only within one line.
     - where to show insert/normal mode message?  Change highlighting of
       character in first column?
     - Implementation ideas:
@@ -3884,7 +3884,7 @@ GUI:
       - never set 'number', no folding, etc.  No status line.
       - sync undo after entering a command line?
       - use NV_NOCL flag for commands that are not allowed in Command-line
-	Mode.
+        Mode.
 
 
 命令行自动补全:
@@ -3945,7 +3945,7 @@ GUI:
 7   Use 'matchpairs' for 'showmatch': When inserting a character check if it
     appears in the rhs of 'matchpairs'.
 -   In Insert mode (and command line editing?): Allow undo of the last typed
-    character.	This is useful for CTRL-U, CTRL-W, delete and backspace, and
+    character.  This is useful for CTRL-U, CTRL-W, delete and backspace, and
     also for characters that wrap to the next line.
     Also: be able to undo CTRL-R (insert register).
     Possibly use 'backspace'="whole" for a mode where at least a <CR> that
@@ -3962,49 +3962,49 @@ GUI:
 
 'cindent'、'smartindent':
 9   Wrapping a variable initialization should have extra indent:
-	char * veryLongName =
-		"very long string"
+        char * veryLongName =
+                "very long string"
     Also check if "cino=+10" is used correctly.
 8   Lisp indenting: "\\" confuses the indenter. (Dorai Sitaram, 2006 May 17)
 8   Why are continuation lines outside of a {} block not indented?  E.g.:
-	long_type foo =
-	value;
+        long_type foo =
+        value;
 8   Java: Inside an anonymous class, after an "else" or "try" the indent is
     too small. (Vincent Bergbauer)
     Problem of using {} inside (), 'cindent' doesn't work then.
 8   In C++ it's possible to have {} inside (): (Kirshna)
-		func(
-			new String[] {
-			    "asdf",
-			    "asdf"
-			}
-		    );
+                func(
+                        new String[] {
+                            "asdf",
+                            "asdf"
+                        }
+                    );
 8   In C++ a function isn't recognized inside a namespace:
     (Chow Loong Jin)
-	namespace {
-	    int
-		 func(int arg) {
-		 }
-	}
+        namespace {
+            int
+                 func(int arg) {
+                 }
+        }
 6   Add 'cino' flag for this function argument layout: (Spencer Collyer)
-	    func( arg1
-	        , arg2
-		, arg3
-		);
+            func( arg1
+                , arg2
+                , arg3
+                );
 7   Add separate "(0" option into inside/outside a function (Zellner):
-	func(
-	   int x)	// indent like "(4"
-	{
-	   if (a
-	       && b)	// indent like "(0"
+        func(
+           int x)       // indent like "(4"
+        {
+           if (a
+               && b)    // indent like "(0"
 9   Using "{" in a comment: (Helmut Stiegler)
     if (a)
     {
-	    if (b)
-	    {
-		    // {
-	    }
-	    } <-- this is indented incorrect
+            if (b)
+            {
+                    // {
+            }
+            } <-- this is indented incorrect
     Problem is that find_start_brace() checks for the matching brace to be in
     a comment, but not braces in between.  Requires adding a comment check to
     findmatchlimit().
@@ -4015,7 +4015,7 @@ GUI:
     line).
 -   Add option to 'cindent' to set indent for comments outside of {}?
 -   Make a command to line up a comment after a code line with a previous
-    comment after a code line.	Can 'cindent' do this automatically?
+    comment after a code line.  Can 'cindent' do this automatically?
 -   When 'cindent'ing a '}', showmatch is done before fixing the indent.  It
     looks better when the indent is fixed before the showmatch. (Webb)
 -   Add option to make indenting work in comments too (for commented-out
@@ -4030,9 +4030,9 @@ GUI:
 -   'smartindent': allow patterns in 'cinwords', for e.g. TeX files, where
     lines start with "\item".
 -   Support this style of comments (with an option): (Brown)
-	/* here is a comment that
-	is just autoindented, and
-	nothing else */
+        /* here is a comment that
+        is just autoindented, and
+        nothing else */
 -   Add words to 'cinwords' to reduce the indent, e.g., "end" or "fi".
 7   Use Tabs for the indent of starting lines, pad with spaces for
     continuation lines.  Allows changing 'tabstop' without messing up the
@@ -4214,13 +4214,13 @@ Java:
     abbreviations are to be used.
 -   Add mappings that take arguments.  Could work like the ":s" command.  For
     example, for a mouse escape sequence:
-	:mapexp  <Esc>{\([0-9]*\),\([0-9]*\);	H\1j\2l
+        :mapexp  <Esc>{\([0-9]*\),\([0-9]*\);   H\1j\2l
 -   Add optional <Number> argument for mappings:
-    :map <Number>q	     ^W^W<Number>G
+    :map <Number>q           ^W^W<Number>G
     :map <Number>q<Number>t  ^W^W<Number1-1>G<Number2>l
-    :map q<Char>	    :s/<Char>/\u\0/g
+    :map q<Char>            :s/<Char>/\u\0/g
     Or implicit:
-    :map q			<Register>d<Number>$
+    :map q                      <Register>d<Number>$
 -   Add command to repeat a whole mapping ("." only repeats the last change in
     a mapping).  Also: Repeat a whole insert command, including any mappings
     that it included.  Sort-of automatic recording?
@@ -4277,10 +4277,10 @@ Java:
 8   Add a mechanism for recursiveness: "\@(([^()]*\@g[^()]*)\)".  \@g stands
     for "go recursive here" and \@( \) marks the recursive part.
     Perl does it this way:
-	    $paren = qr/ \(( [^()] | (??{ $paren }) )* \) /x;
+            $paren = qr/ \(( [^()] | (??{ $paren }) )* \) /x;
     Here $paren is evaluated when it's encountered.  This is like a regexp
     inside a regexp.  In the above terms it would be:
-	    \@((\([^()]\|\@g\)*)\)
+            \@((\([^()]\|\@g\)*)\)
 8   Show the progress every second.  Could use the code that checks for CTRL-C
     to find out how much time has passed.  Or use SIGALRM.  Where to show the
     number?
@@ -4294,7 +4294,7 @@ Java:
 7   Add an item stack to allow matching ().  One side is "push X on
     the stack if previous atom matched".  Other side is "match with top of
     stack, pop it when it matches".  Use "\@pX" and "\@m"?
-	Example: \((\@p).\{-}\@m\)*
+        Example: \((\@p).\{-}\@m\)*
 7   Add an option to accept a match at the cursor position.  Also for
     search(). (Brett)
 7   Add a flag to "/pat/" to discard an error.  Useful to continue a mapping
@@ -4345,18 +4345,18 @@ Java:
     This works for all places where a regexp is used.
     Add "\q" to not store this pattern as the last search pattern?
 -   Add flags to search command (also for ":s"?):
-    i	ignore case
-    I	use case
-    p	use Perl regexp syntax (or POSIX?)
-    v	use Vi regexp syntax
-    f	forget pattern, don't keep it for "n" command
+    i   ignore case
+    I   use case
+    p   use Perl regexp syntax (or POSIX?)
+    v   use Vi regexp syntax
+    f   forget pattern, don't keep it for "n" command
     F   remember pattern, keep it for "n" command
     Perl uses these too:
-    e	evaluate the right side as an expression (Perl only)
-    m	multiple line expression (we don't need it)
-    o	compile only once (Perl only)
-    s	single line expression (we don't need it)
-    x	extended regexp (we don't need it)
+    e   evaluate the right side as an expression (Perl only)
+    m   multiple line expression (we don't need it)
+    o   compile only once (Perl only)
+    s   single line expression (we don't need it)
+    x   extended regexp (we don't need it)
     When used after ":g" command, backslash needed to avoid confusion with the
     following command.
     Add 'searchflags' for default flags (replaces 'gdefault').
@@ -4372,9 +4372,9 @@ Java:
 -   Searching: "/this//that/" should find "that" after "this".
 -   Add global search commands: Instead of wrapping at the end of the buffer,
     they continue in another buffer.  Use flag after search pattern:
-    a	for the next file in the argument list
-    f	for file in the buffer list
-    w	for file edited in a window.
+    a   for the next file in the argument list
+    f   for file in the buffer list
+    w   for file edited in a window.
     e.g. "/pat/f".  Then "n" and "N" work through files too.  "f" flag also for
     ":s/pat/foo/f"???  Then when 'autowrite' and 'hidden' are both not set, ask
     before saving files: "Save modified buffer "/path/file"? (Yes/Hide/No
@@ -4755,7 +4755,7 @@ Viminfo:
 -   The ":@r" commands should take a range and execute the register for each
     line in the range.
 -   Add "P" command to insert contents of unnamed register, move selected text
-	to position of previous deleted (to swap foo and bar in " + foo")
+        to position of previous deleted (to swap foo and bar in " + foo")
 8   Should be able to yank and delete into the "/ register.
     How to take care of the flags (offset, magic)?
 
@@ -4863,7 +4863,7 @@ Viminfo:
 7   Have a look at viH (Hellenic or Greek version of Vim).  But a solution
     outside of Vim might be satisfactory (Haritsis).
 3   Make "2d%" work like "d%d%" instead of "d2%"?
-7   "g CTRL-O" jumps back to last used buffer.	Skip CTRL-O jumps in the same
+7   "g CTRL-O" jumps back to last used buffer.  Skip CTRL-O jumps in the same
     buffer.  Make jumplist remember the last ten accessed buffers?
 7   Make it possible to set the size of the jumplist (also to a smaller number
     than the default). (Nikolai Weibull)
@@ -4898,7 +4898,7 @@ Viminfo:
     (first line of paragraph has larger indent, no empty lines between
     paragraphs).  Complements the '2' flag.  Use '>' flag when larger indent
     starts a new paragraph, use '<' flag when smaller indent starts a new
-    paragraph.	Both start a new paragraph on any indent change.
+    paragraph.  Both start a new paragraph on any indent change.
 8   The 'a' flag in 'formatoptions' is too dangerous.  In some way only do
     auto-formatting in specific regions, e.g. defined by syntax highlighting.
 8   Allow using a trailing space to signal a paragraph that continues on the
@@ -4917,8 +4917,8 @@ Viminfo:
 7   Should ":cd" for MS-DOS go to $HOME, when it's defined?
 -   Make "gq<CR>" work on the last line in the file.  Maybe for every operator?
 -   Add more redirecting of Ex commands:
-	:redir #>  bufname
-	:redir #>> bufname   (append)
+        :redir #>  bufname
+        :redir #>> bufname   (append)
 -   Give error message when starting :redir: twice or using END when no
     redirection was active.
 -   Setting of options, specifically for a buffer or window, with
@@ -4927,13 +4927,13 @@ Viminfo:
 6   Would it be possible to change the color of the cursor in the Win32
     console?  (Klaus Hast)
 -   Add :delcr command:
-			    *:delcr*
-     :[range]delcr[!]	Check [range] lines (default: whole buffer) for lines
-			ending in <CR>.  If all lines end in <CR>, or [!] is
-			used, remove the <CR> at the end of lines in [range].
-			A CTRL-Z at the end of the file is removed.  If
-			[range] is omitted, or it is the whole file, and all
-			lines end in <CR> 'textmode' is set.  {not in Vi}
+                            *:delcr*
+     :[range]delcr[!]   Check [range] lines (default: whole buffer) for lines
+                        ending in <CR>.  If all lines end in <CR>, or [!] is
+                        used, remove the <CR> at the end of lines in [range].
+                        A CTRL-Z at the end of the file is removed.  If
+                        [range] is omitted, or it is the whole file, and all
+                        lines end in <CR> 'textmode' is set.  {not in Vi}
 -   Should integrate addstar() and file_pat_to_reg_pat().
 -   When working over a serial line with 7 bit characters, remove meta
     characters from 'isprint'.
@@ -4961,13 +4961,13 @@ Viminfo:
 -   Add ":@!" command, to ":@" like what ":source!" is to ":source".
 8   Add ":@:!": repeat last command with forceit set.
 -   Add 't_normal': Used whenever t_me, t_se, t_ue or t_Zr is empty.
--   ":cab map test ^V| je", ":cunab map" doesn't work.	This is vi compatible!
+-   ":cab map test ^V| je", ":cunab map" doesn't work.  This is vi compatible!
 -   CTRL-W CTRL-E and CTRL-W CTRL-Y should move the current window up or down
     if it is not the first or last window.
 -   Include-file-search commands should look in the loaded buffer of a file (if
     there is one) instead of the file itself.
 7   Change 'nrformats' to include the leader for each format.  Example:
-	nrformats=hex:$,binary:b,octal:0
+        nrformats=hex:$,binary:b,octal:0
     Add setting of 'nrformats' to syntax files.
 -   'path' can become very long, don't use NameBuff for expansion.
 -   When unhiding a hidden buffer, put the same line at top of the window as
@@ -5015,7 +5015,7 @@ Viminfo:
 -   When finding an URL or file name, and it doesn't exist, try removing a
     trailing '.'.
 -   Add ":path" command modifier.  Should work for every command that takes a
-    file name argument, to search for the file name in 'path'.	Use
+    file name argument, to search for the file name in 'path'.  Use
     find_file_in_path().
 -   Highlight control characters on the screen: Shows the difference between
     CTRL-X and "^" followed by "X" (Colon).
@@ -5025,7 +5025,7 @@ Viminfo:
 -   Add ":noro" command: Reset 'ro' flag for all buffers, except ones that have
     a readonly file.  ":noro!" will reset all 'ro' flags.
 -   Add a variant of CTRL-V that stops interpretation of more than one
-    character.	For entering mappings on the command line where a key contains
+    character.  For entering mappings on the command line where a key contains
     several special characters, e.g. a trailing newline.
 -   Make '2' option in 'formatoptions' also work inside comments.
 -   Add 's' flag to 'formatoptions': Do not break when inside a string. (Dodt)
@@ -5147,17 +5147,17 @@ Viminfo:
 -   Use "instman.sh" to install manpages?
 -   Add ":alias" command.
 -   Search patterns:
-      \@	match word under cursor.
+      \@        match word under cursor.
     but do:
-      \@w	match the word under the cursor?
-      \@W	match the WORD under the cursor?
+      \@w       match the word under the cursor?
+      \@W       match the WORD under the cursor?
 8   ":window" command:
-    :win +	next window (up)
-    :win ++	idem, wrapping
-    :win -	previous window (down)
-    :win --	idem, wrapping
-    :win nr	to window number "nr"
-    :win name	to window editing buffer "name"
+    :win +      next window (up)
+    :win ++     idem, wrapping
+    :win -      previous window (down)
+    :win --     idem, wrapping
+    :win nr     to window number "nr"
+    :win name   to window editing buffer "name"
 7   ":cc" compiles a single file (default: current one).  'ccprg'   option is
     program to use with ":cc".  Use ":compile" instead of ":cc"?
 

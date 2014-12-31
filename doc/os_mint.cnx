@@ -1,10 +1,10 @@
-*os_mint.txt*	For Vim version 7.4.  最近更新: 2005年3月
+*os_mint.txt*   For Vim version 7.4.  最近更新: 2005年3月
 
 
-		   Vim 参考手册    作者: Jens M.Felderhoff
-	    译者: iCrazy<icrazy@ustc.edu>  http://vimcdoc.sf.net
+                   Vim 参考手册    作者: Jens M.Felderhoff
+            译者: iCrazy<icrazy@ustc.edu>  http://vimcdoc.sf.net
 
-						        *MiNT* *Atari*
+                                                        *MiNT* *Atari*
 本文包含了 Atari MiNT 的 Vim 版本的特性。
 
 如果您要为运行 MiNT 的 Atari 机器编译 Vim，您需要首先看一下 src 目录下的
@@ -28,6 +28,6 @@ MiNT 上的终端刷新常常比较慢 (比如串行终端)，所以默认情况
 
 如果您发现了错误，请发送报告至
 
-	Jens M. Felderhoff，电邮: <jmf@infko.uni-koblenz.de>
+        Jens M. Felderhoff，电邮: <jmf@infko.uni-koblenz.de>
 
 vim:tw=78:ts=8:ft=help:norl:
