@@ -64,7 +64,7 @@ Windows:
 已加入的插件文档，欢迎大家完善
 
   - NERD_commenter 提供许多不同的注释操作和风格的代码注释插件
-  - NERD_tree 像妈妈一样体贴的树形插件！
+  - NERD_tree 像妈妈一样体贴的树形浏览插件！
   - bufexplorer Buffer Explorer
   - CtrlP 模糊检索文件, 缓冲区, 最近最多使用, 标签等的 Vim 插件
   - markdown Markdown 标记语言
