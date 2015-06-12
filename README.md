@@ -59,7 +59,7 @@ Windows:
 
 # 申明 #
 
-文档内容来源于 [http://vimcdoc.sourceforge.net/]()，我只是简单搬过来并加入了些已经被翻译过来的插件中文文档
+文档内容来源于 [http://vimcdoc.sourceforge.net/][1]，我只是简单搬过来并加入了些已经被翻译过来的插件中文文档
 
 已加入的插件文档，欢迎大家完善
 
@@ -72,3 +72,4 @@ Windows:
   - template 智能加载模板文件
 
 
+  [1]: http://vimcdoc.sourceforge.net/
