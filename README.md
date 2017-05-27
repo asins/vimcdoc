@@ -77,8 +77,8 @@ git clone git://github.com/asins/vimcdoc.git
 
 ## 申明
 
-Vim 中文文档来源于 [http://vimcdoc.sourceforge.net/][1]
-Vim 英文文档 [https://github.com/vim/vim/tree/master/runtime/doc][3]
+- Vim 中文文档来源于 [http://vimcdoc.sourceforge.net/][1]
+- Vim 英文文档 [https://github.com/vim/vim/tree/master/runtime/doc][3]
 
   [1]: http://vimcdoc.sourceforge.net/
   [2]: https://github.com/scrooloose/nerdcommenter
