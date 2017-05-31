@@ -66,7 +66,7 @@ git clone git://github.com/asins/vimcdoc.git
 文档中也整合了已翻译的常用插件，方便随时查询，也欢迎大家完善，已加入：
 
 - [NERD_commenter][2] 提供许多不同的注释操作和风格的代码注释插件
-- NERD_tree 像妈妈一样体贴的树形浏览插件！
+- [NERD_tree][4] 像妈妈一样体贴的树形浏览插件！
 - bufexplorer Buffer Explorer
 - CtrlP 模糊检索文件，缓冲区，最近最多使用，标签等的 Vim 插件
 - markdown Markdown 标记语言
@@ -83,4 +83,5 @@ git clone git://github.com/asins/vimcdoc.git
   [1]: http://vimcdoc.sourceforge.net/
   [2]: https://github.com/scrooloose/nerdcommenter
   [3]: https://github.com/vim/vim/tree/master/runtime/doc
-  
+  [4]: https://github.com/scrooloose/nerdtree
+
