@@ -38,10 +38,10 @@
     4.NERD tree API...........................|NERDTreeAPI|
         4.1.按键映射 API......................|NERDTreeKeymapAPI|
         4.2.菜单 API..........................|NERDTreeMenuAPI|
+        4.3.菜单 API..........................|NERDTreeAddPathFilter()|
+        4.4.路径监听 API......................|NERDTreePathListenerAPI|
     5.关于....................................|NERDTreeAbout|
-    6.更新日志................................|NERDTreeChangelog|
-    7.致谢名单................................|NERDTreeCredits|
-    8.授权协议................................|NERDTreeLicense|
+    6.授权协议................................|NERDTreeLicense|
 
 ==============================================================================
 1. 简介                                                             *NERDTree*
@@ -626,7 +626,7 @@ NERD tree 有一个可以通过 API 编程的菜单（详细请参阅 |NERDTreeM
 
 |'NERDTreeMinimalUI'|             禁止显示 'Bookmarks' 和 'Press ? for help'。
 
-|'NERDTreeDirArrows'|             告诉 NERD tree 显示目录的时候使用箭头代替 + ~ 。
+|'NERDTreeCascadeSingleChildDir'| 只有一个子目录时在同一行目录上折叠。
 
 |'NERDTreeCascadeOpenSingleChildDir'|
                                 当所选目录只有一个子节点并且该节点是目录的时
@@ -634,6 +634,8 @@ NERD tree 有一个可以通过 API 编程的菜单（详细请参阅 |NERDTreeM
 
 |'NERDTreeAutoDeleteBuffer'|      告诉 NERD tree 当文件被上下文菜单命令删除或重
                                 命名的时候，自动删除缓冲区。
+
+|'NERDTreeCreatePrefix'|         在创建NERDTree窗口时指定一个前缀。
 
 ------------------------------------------------------------------------------
 3.2. 定制细节                                          *NERDTreeOptionDetails*
@@ -725,11 +727,11 @@ NERD tree 有一个可以通过 API 编程的菜单（详细请参阅 |NERDTreeM
 如果设置为 1，当执行 >
     :edit <some directory>
 <
-会在目标窗口打开一个“次等”的 NERD tree 来代替 netrw。
+在目标窗口打开一个窗口级别的 NERD tree 而不是 netrw。
 
-“次等”的 NERD tree 在下面几个方面和普通的有所区别：
-    1. 'o' 会在和树同一个窗口打开文件，替换掉当前打开的内容。
-    2. 在同一个标签页内你可以有任意多的“次等”的 NERD tree。
+窗口级别的树与以下方面的常规树有不同：
+    1. 'o' 会在和树相同的窗口中打开所选文件，替换掉原有内容。
+    2. 每个窗口可以有一个树，而不是每个选项卡。
 
 ------------------------------------------------------------------------------
                                                             *'NERDTreeIgnore'*
@@ -747,7 +749,7 @@ NERD tree 被渲染的时候，被 'NERDTreeIgnore' 中的正则表达式匹配�
 
 有两个魔术标志可以添加到每一个正则表达式后面来指定这个正则表达式只能被用于匹配
 文件或者只能被用于匹配目录。这些标志是 "[[dir]]" 和 "[[file]]"，例如： >
-    let NERDTreeIgnore=['.d$[[dir]]', '.o$[[file]]']
+    let NERDTreeIgnore=['\.d$[[dir]]', '\.o$[[file]]']
 <
 会导致所有以 ".d" 结尾的目录会被忽略，所有以 ".o" 结尾的目录会被忽略。
 
@@ -773,11 +775,14 @@ NERD tree 被渲染的时候，被 'NERDTreeIgnore' 中的正则表达式匹配�
 
 ------------------------------------------------------------------------------
                                                      *'NERDTreeBookmarksSort'*
-取值范围： 0 或 1
+取值范围： 0, 1 或 2
 默认值： 1
 
-如果设置为 0，书签表不会被排序。
-如果设置为 1，书签表会被排序。
+此选项控制用户书签列表排序的方法。排序时将按名称的字母顺序排列书签。
+
+如果设置为 0，则书签列表不会被排序。
+如果设置为 1，则以不区分大小写的方式排序书签列表。
+如果设置为 2，则以区分大小写的方式排序书签列表。
 
 ------------------------------------------------------------------------------
                                                          *'NERDTreeMouseMode'*
@@ -876,7 +881,7 @@ NERD tree 被渲染的时候，被 'NERDTreeIgnore' 中的正则表达式匹配�
 ------------------------------------------------------------------------------
                                                         *'NERDTreeStatusline'*
 取值范围： 任何可用的状态栏设置
-默认值： %{b:NERDTreeRoot.path.strForOS(0)}
+默认值： %{b:NERDTree.root.path.strForOS(0)}
 
 告诉插件为 NERD tree 窗口使用 |'statusline'| 设置。
 
@@ -913,15 +918,14 @@ NERD tree 被渲染的时候，被 'NERDTreeIgnore' 中的正则表达式匹配�
 <
 
 ------------------------------------------------------------------------------
-                                                         *'NERDTreeDirArrows'*
-取值范围： 0 或 1
-默认值： 0
+                                             *'NERDTreeCascadeSingleChildDir'*
+聚会范围: 0 或 1
+默认值: 1.
 
-这个选项用来改变树中目录节点的默认外观。当这个选项设置为 0 的时候，会使用老式
-的长条（|），+，~ 字符。当设置为 1 的时候使用右箭头和下箭头。使用下面方式设置
-这个选项： >
-    let NERDTreeDirArrows=0
-    let NERDTreeDirArrows=1
+显示目录节点时，此选项告诉 NERDTree 可以折叠只有一个子节点的目录。
+使用以下一行来设置此选项： >
+    let NERDTreeCascadeSingleChildDir=0
+    let NERDTreeCascadeSingleChildDir=1
 <
 
 ------------------------------------------------------------------------------
@@ -948,6 +952,17 @@ NERD tree 被渲染的时候，被 'NERDTreeIgnore' 中的正则表达式匹配�
 使用下面的方式来设置这个选项： >
     let NERDTreeAutoDeleteBuffer=0
     let NERDTreeAutoDeleteBuffer=1
+<
+
+------------------------------------------------------------------------------
+                                          *'NERDTreeCreatePrefix'*
+聚会范围: 任何有效的命令前缀。
+默认值: "silent".
+
+在内部，NERDTree使用|：edit | 命令创建一个缓冲区以显示其树视图。
+您可以通过指定前缀字符串（例如“keepalt”）等来增强此行为。
+例如，使用 `silent keepalt keepjumps edit` 来让 NERDTree 编辑它的树窗口: >
+    let NERDTreeCreatePrefix='silent keepalt keepjumps'
 <
 
 ==============================================================================
@@ -1085,6 +1100,43 @@ NERDTreeAddMenuSeparator([{options}])             *NERDTreeAddMenuSeparator()*
 当三个实际的菜单项中任何一个被选中后 "SomeFunction" 会被调用。
 
 ------------------------------------------------------------------------------
+4.3 NERDTreeAddPathFilter(callback)                   *NERDTreeAddPathFilter()*
+
+路径过滤器本质上是 |NERDTreeIgnore| 的一个更强大的版本。
+如果简单在 |NERDTreeIgnore| 中使用正则表达式匹配是不够用的，
+|NERDTreeAddPathFilter()| 添加了一个回调函数用于当决定忽略它们时检查路径。如 >
+
+    call NERDTreeAddPathFilter('MyFilter')
+
+    function! MyFilter(params)
+        "params is a dict containing keys: 'nerdtree' and 'path' which are
+        "g:NERDTree and g:NERDTreePath objects
+
+        "return 1 to ignore params['path'] or 0 otherwise
+    endfunction
+<
+------------------------------------------------------------------------------
+4.4 路径监听 API                                      *NERDTreePathListenerAPI*
+
+如果要在路径对象上运行事件的回调，请使用此API。例如 >
+
+    call g:NERDTreePathNotifier.AddListener("init", "MyListener")
+
+    "....
+
+    function! MyListener(event)
+        "每当创建路径对象时，将调用此函数。
+
+        "a:event is an object that contains a bunch of relevant info -
+        "including the path in question. See lib/nerdtree/event.vim for details.
+    endfunction
+<
+当前事件支持：
+  init ~
+  refresh ~
+  refreshFlags ~
+
+------------------------------------------------------------------------------
 NERDTreeRender()                                            *NERDTreeRender()*
     重新渲染 NERD tree 缓冲区。在你改变了树的状态的时候可以用来反映到用户界面
     上。
@@ -1105,177 +1157,8 @@ NERD tree 的作者是一只叫“妈斯拉”（Martyzilla）的十分可怕的
 最新的开发版在 GitHub 上
     http://github.com/scrooloose/nerdtree
 
-
 ==============================================================================
-6. 更新日志                                                *NERDTreeChangelog*
-
-下一步计划
-    - 为按键映射 API 添加 'scope' 参数
-    - 添加 NERDTreeCustomIgnoreFilter 钩子函数 - 需要文档
-    - 为 NERDTreeIgnore 添加 [[dir]] 和 [[file]] 魔法标志
-
-4.2.0
-    - 添加 NERDTreeDirArrows 选项来使用户界面使用好看的箭头符号代替旧的 +~| 字
-      符来定义树结构（sickill）
-    - 把语法高亮移动到独自的高亮文件中（gnap）
-    - 在文件菜单中为 Mac 添加单独的选项 - 只对 MacVim 有效（andersonfreitas）
-    - 添加 NERDTreeMinimalUI 选项来删除 NERD tree 用户界面中一些非功能性的部分
-      （camthompson）
-    - 调整 :NERDTreeFind 的行为 - 新行为请参阅 :help :NERDTreeFind
-      （benjamingeiger）
-    - 如果没有给 :Bookmark 指定名称，它会使用目标文件/目录的名称（minyoung）
-    - 当进行复制、新建和移动操作的时候使用 'file' 补全（EvanDotPro）
-    - 很多的错误修复（paddyoloughlin, sdewald, camthompson, Vitaly
-      Bogdanov, AndrewRadev, mathias, scottstvnsn, kml, wycats, 我 吼吼！）
-
-4.1.0
-    新特性：
-    - 添加 NERDTreeFind 来展现树的当前缓冲区，请参阅 |NERDTreeFind|。这实际上
-      合并了 FindInNERDTree 插件（作者 Doug McInnes）到本脚本中。
-    - NERDTreeQuitOnOpen 对 t/T 映射生效。感谢 Stefan Ritter 和 Rémi Prévost
-    - 如果比树窗口宽，缩短根节点。感谢 Victor Gonzalez 。
-
-    错误修复：
-    - 完全修复了窗口状态还原。
-    - 修复一些 win32 路径转移的问题。感谢 Stephan Baumeister, Ricky,
-      jfilip1024 和 Chris Chambers 。
-
-4.0.0
-    - 添加一个新的可编程的菜单系统（请参阅 :help NERDTreeMenu ）。
-    - 添加新的 API 来添加菜单/菜单项到菜单系统和添加自定义映射到 NERD tree
-      缓冲区（请参阅 :help NERDTreeAPI ）。
-    - 移除旧的 API
-    - 添加一个新的映射来最大化/还原 NERD tree 的窗口，感谢
-      Guillaume Duranceau 的补丁。详细请参阅 :help NERDTree-A 。
-
-    - 修复次等的 NERD tree（netrw 替换树）和 NERDTreeQuitOnOpen 选项共存的问
-      题，感谢 Curtis Harvey 。
-    - 修复插件忽略以点号结尾的目录的问题，感谢 Aggelos Orfanakos 的补丁。
-    - 修复 x 按键在树的根节点的问题，感谢 Bryan Venteicher 的补丁。
-    - 修复 NERD tree 缓冲区内的光标位置/窗口大小在关闭时没有被正确存储的问题，
-      感谢 Richard Hart 。
-    - 修复 NERDTreeMirror 镜像错误的树的问题
-
-3.1.1
-    - 修复每次树窗口被创建的时候一个没有列表没有名字的缓冲区被创建的错误，
-      感谢 Derek Wyatt 和 owen1
-    - 使 <CR> 行为和 'o' 映射一样。
-    - 修复文档中一些帮助标签，感谢 strull
-    - 修复使用 :set nohidden 和打开前一个缓冲区被修改过的文件中的错误。感
-      谢 iElectric
-    - 其它小修复
-
-3.1.0
-    新特性：
-    - 添加在竖直窗口打开文件的映射，请参阅 :help NERDTree-s 和
-      :help NERDTree-gs
-    - 将 NERD tree 的窗口状态栏的默认值设置为一些更加有用的值。请参阅
-      :help 'NERDTreeStatusline'
-    错误修复：
-    - 替换 netrw 对以 "vim <some dir>" 方式打开的 Vim 也生效
-      （感谢 Alf Mikula 的补丁）
-    - 修复当前工作目录（CWD）没有被一些操作改变的情况，即使是设置了
-      NERDTreeChDirMode==2 （感谢 Lucas S. Buchala ）
-    - 给所有 NERD tree :commands 添加 -bar，这样他们就可以链式调用其他
-      :commands。 （感谢 tpope ）
-    - 修复设置忽略中的错误 （感谢 nach ）
-    - 修复相对路径的一个错误 （感谢 nach ）
-    - 修复使用 :cd 会导致 :NERDTreeToggle 失败的错误 （感谢 nach ）
-
-
-3.0.1
-    错误修复:
-    - 修复 'hidden' 没有设置时 :NERDTreeToggle 和 :NERDTreeMirror 中的错误
-    - 修复当 <path> 是相对路径并且没有以 ./ 或 ../ 开头的时候，
-      :NERDTree <path> 会失败的错误，感谢 James Kanze。
-    - 使按键映射 q 对次等（ :e <dir> 形式） NERD tree 生效，感谢 jamessan
-    - 修复次等 NERD tree 中大把的错误。
-
-    许多疯狂的重构。
-
-3.0.0
-    - 替换 netrw ，当使用 :edit <directory> 会将一个 NERD tree 放入窗口，而
-      不是一个 netrw 浏览器。请参阅 :help 'NERDTreeHijackNetrw'
-    - 允许跨标签页分享树，请参阅 :help :NERDTreeMirror
-    - 移除 NERDTreeWinPos 中 "top" 和 "bottom" 设置
-    - 改变 '<tab>' 映射为 'i'
-    - 改变默认的 'H' 映射为 'I'
-    - 大量重构
-
-==============================================================================
-7. 致谢名单                                                  *NERDTreeCredits*
-
-感谢下面的提供测试、错误报告、新想法等的人。没有你们我可能已经厌烦了继续开发
-NERD tree 而干脆去下载毛片了。
-
-    Tim Carey-Smith (halorgium)
-    Vigil
-    Nick Brettell
-    Thomas Scott Urban
-    Terrance Cohen
-    Yegappan Lakshmanan
-    Jason Mills
-    Michael Geddes (frogonwheels)
-    Yu Jun
-    Michael Madsen
-    AOYAMA Shotaro
-    Zhang Weiwu
-    Niels Aan de Brugh
-    Olivier Yiptong
-    Zhang Shuhan
-    Cory Echols
-    Piotr Czachur
-    Yuan Jiang
-    Matan Nassau
-    Maxim Kim
-    Charlton Wang
-    Matt Wozniski (godlygeek)
-    knekk
-    Sean Chou
-    Ryan Penn
-    Simon Peter Nicholls
-    Michael Foobar
-    Tomasz Chomiuk
-    Denis Pokataev
-    Tim Pope (tpope)
-    James Kanze
-    James Vega (jamessan)
-    Frederic Chanal (nach)
-    Alf Mikula
-    Lucas S. Buchala
-    Curtis Harvey
-    Guillaume Duranceau
-    Richard Hart (hates)
-    Doug McInnes
-    Stefan Ritter
-    Rémi Prévost
-    Victor Gonzalez
-    Stephan Baumeister
-    Ricky
-    jfilip1024
-    Chris Chambers
-    Vitaly Bogdanov
-    Patrick O'Loughlin (paddyoloughlin)
-    Cam Thompson (camthompson)
-    Marcin Kulik (sickill)
-    Steve DeWald (sdewald)
-    Ivan Necas (iNecas)
-    George Ang (gnap)
-    Evan Coury (EvanDotPro)
-    Andrew Radev (AndrewRadev)
-    Matt Gauger (mathias)
-    Scott Stevenson (scottstvnsn)
-    Anderson Freitas (andersonfreitas)
-    Kamil K. Lemański (kml)
-    Yehuda Katz (wycats)
-    Min-Young Wu (minyoung)
-    Benjamin Geiger (benjamingeiger)
-
-==============================================================================
-8. 授权协议                                                  *NERDTreeLicense*
+6. 授权协议                                                  *NERDTreeLicense*
 
 NERD tree 基于“你他妈的想干嘛就干嘛公共许可证”（WTFPL）发布。
 参阅 http://sam.zoy.org/wtfpl/COPYING 。
-
-==============================================================================
- vim:tw=78:ts=8:ft=help:norl:et:
