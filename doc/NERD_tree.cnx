@@ -115,6 +115,9 @@ NERD tree 提供以下特性和功能：
     在当前的标签页中如果已经存在一个 NERD tree，它会被重新打开和渲染。
     如果这个标签页内没有 NERD tree 存在，就相当于执行 |:NERDTree| 命令。
 
+:NERDTreeFocus                                                *:NERDTreeFocus*
+    如果NERD Tree当前不可见则打开（或重新打开）；否则光标移动到已打开的NERD Tree上。
+
 :NERDTreeMirror                                              *:NERDTreeMirror*
     从另一个标签页共享一个存在的 NERD tree 到当前标签页里面。
     由于是使用同一个缓冲区，当一个树改变的时候，会体现在所有的共享标签页里面。
